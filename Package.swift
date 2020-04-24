@@ -9,26 +9,41 @@ let package = Package(
         .macOS(.v10_15)
     ],
     products: [
-        .executable(name: "aoideiTunes", targets: ["aoide-iTunes"])
+        .executable(name: "aoideiTunes", targets: ["AoideITunes"])
     ],
     dependencies: [
         .package(url: "https://github.com/nsomar/Guaka.git", from: "0.4.1")
     ],
     targets: [
         .target(
-            name: "aoide-iTunes",
-            dependencies: ["aoide-iTuneslib", "Guaka"],
-            path: "aoide-iTunes/Sources"
+            name: "AoideITunes",
+            dependencies: ["AoideITunesLib", "Guaka"],
+            path: "AoideITunes/Sources"
         ),
         .target(
-            name: "aoide-iTuneslib",
+            name: "AoideITunesLib",
+            dependencies: ["AoideModel", "ITunesModel"],
+            path: "AoideITunesLib/Sources"
+        ),
+        .target(
+            name: "AoideModel",
             dependencies: [],
-            path: "aoide-iTuneslib/Sources"
+            path: "AoideModel/Sources"
+        ),
+        .target(
+            name: "ITunesModel",
+            dependencies: [],
+            path: "ITunesModel/Sources"
+        ),
+        .target(
+            name: "ITunesModelStubs",
+            dependencies: ["ITunesModel"],
+            path: "ITunesModelStubs/Sources"
         ),
         .testTarget(
-            name: "aoide-iTunesTests",
-            dependencies: ["aoide-iTuneslib"],
-            path: "aoide-iTuneslib/Tests"
+            name: "AoideITunesLibTests",
+            dependencies: ["AoideITunesLib", "ITunesModelStubs"],
+            path: "AoideITunesLib/Tests"
         )
     ]
 )

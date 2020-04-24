@@ -14,18 +14,11 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import iTunesLibrary
+import AoideModel
+import ITunesModel
 
-extension ITLibAlbumProtocol {
-    func mapToAoide() -> Album {
-        Album(
-            titles: (title ?? sortTitle)
-                .map(Title.default)
-                .asArray(),
-            actors: (albumArtist ?? sortAlbumArtist)
-                .map(Actor.default)
-                .asArray(),
-            compilation: isCompilation
-        )
+extension ITLibArtistProtocol {
+    func mapToAoide() -> Actor? {
+        (name ?? sortName).map(Actor.default)        
     }
 }

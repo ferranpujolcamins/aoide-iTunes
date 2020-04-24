@@ -14,33 +14,15 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import iTunesLibrary
+import ITunesModel
 
-protocol ITLibAlbumProtocol {
+public struct ITLibArtistStub: ITLibArtistProtocol {
 
-    var albumArtist: String? { get }
+    public init() {}
 
-    var discCount: Int { get }
+    public var name: String? = nil
 
-    var discNumber: Int { get }
+    public var persistentID: NSNumber = 0
 
-    var isCompilation: Bool { get }
-
-    var isGapless: Bool { get }
-
-    var isRatingComputed: Bool { get }
-
-    var persistentID: NSNumber { get }
-
-    var rating: Int { get }
-
-    var sortAlbumArtist: String? { get }
-
-    var sortTitle: String? { get }
-
-    var title: String? { get }
-
-    var trackCount: Int { get }
+    public var sortName: String? = nil
 }
-
-extension ITLibAlbum: ITLibAlbumProtocol {}

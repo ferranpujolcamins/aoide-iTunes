@@ -14,12 +14,33 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
+import ITunesModel
 
-public struct Album {
+public struct ITLibAlbumStub: ITLibAlbumProtocol {
 
-    public let titles: [Title]
+    public init() {}
 
-    public let actors: [Actor]
-    
-    public let compilation: Bool?
+    public var albumArtist: String? = nil
+
+    public var discCount: Int = 0
+
+    public var discNumber: Int = 0
+
+    public var isCompilation: Bool = false
+
+    public var isGapless: Bool = false
+
+    public var isRatingComputed: Bool = false
+
+    public var persistentID: NSNumber = 0
+
+    public var rating: Int = 0
+
+    public var sortAlbumArtist: String? = nil
+
+    public var sortTitle: String? = nil
+
+    public var title: String? = nil
+
+    public var trackCount: Int = 0
 }

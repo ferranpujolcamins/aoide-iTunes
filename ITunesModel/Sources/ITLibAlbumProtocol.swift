@@ -14,13 +14,33 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-@testable import aoide_iTuneslib
+import iTunesLibrary
 
-struct ITLibArtistStub: ITLibArtistProtocol {
-    
-    var name: String? = nil
+public protocol ITLibAlbumProtocol {
 
-    var persistentID: NSNumber = 0
+    var albumArtist: String? { get }
 
-    var sortName: String? = nil
+    var discCount: Int { get }
+
+    var discNumber: Int { get }
+
+    var isCompilation: Bool { get }
+
+    var isGapless: Bool { get }
+
+    var isRatingComputed: Bool { get }
+
+    var persistentID: NSNumber { get }
+
+    var rating: Int { get }
+
+    var sortAlbumArtist: String? { get }
+
+    var sortTitle: String? { get }
+
+    var title: String? { get }
+
+    var trackCount: Int { get }
 }
+
+extension ITLibAlbum: ITLibAlbumProtocol {}

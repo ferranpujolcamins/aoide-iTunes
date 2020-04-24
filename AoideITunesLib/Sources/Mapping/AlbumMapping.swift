@@ -14,31 +14,19 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-@testable import aoide_iTuneslib
+import AoideModel
+import ITunesModel
 
-struct ITLibAlbumStub: ITLibAlbumProtocol {
-
-    var albumArtist: String? = nil
-
-    var discCount: Int = 0
-
-    var discNumber: Int = 0
-
-    var isCompilation: Bool = false
-
-    var isGapless: Bool = false
-
-    var isRatingComputed: Bool = false
-
-    var persistentID: NSNumber = 0
-
-    var rating: Int = 0
-
-    var sortAlbumArtist: String? = nil
-
-    var sortTitle: String? = nil
-
-    var title: String? = nil
-
-    var trackCount: Int = 0
+extension ITLibAlbumProtocol {
+    func mapToAoide() -> Album {
+        Album(
+            titles: (title ?? sortTitle)
+                .map(Title.default)
+                .asArray(),
+            actors: (albumArtist ?? sortAlbumArtist)
+                .map(Actor.default)
+                .asArray(),
+            compilation: isCompilation
+        )
+    }
 }

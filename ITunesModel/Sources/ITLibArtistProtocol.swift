@@ -16,8 +16,13 @@
 import Foundation
 import iTunesLibrary
 
-extension ITLibArtistProtocol {
-    func mapToAoide() -> Actor? {
-        (name ?? sortName).map(Actor.default)        
-    }
+public protocol ITLibArtistProtocol {
+
+    var name: String? { get }
+
+    var persistentID: NSNumber { get }
+
+    var sortName: String? { get }
 }
+
+extension ITLibArtist: ITLibArtistProtocol {}

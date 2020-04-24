@@ -14,8 +14,9 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import XCTest
-import iTunesLibrary
-@testable import aoide_iTuneslib
+import ITunesModelStubs
+import AoideModel
+@testable import AoideITunesLib
 
 final class ArtistMappingTests: XCTestCase {
 

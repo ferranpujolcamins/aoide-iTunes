@@ -14,15 +14,18 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import iTunesLibrary
 
-protocol ITLibArtistProtocol {
+public struct Album {
 
-    var name: String? { get }
+    public init(titles: [Title], actors: [Actor], compilation: Bool?) {
+        self.titles = titles
+        self.actors = actors
+        self.compilation = compilation
+    }
 
-    var persistentID: NSNumber { get }
+    public let titles: [Title]
 
-    var sortName: String? { get }
+    public let actors: [Actor]
+    
+    public let compilation: Bool?
 }
-
-extension ITLibArtist: ITLibArtistProtocol {}
