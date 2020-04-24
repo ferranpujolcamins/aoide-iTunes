@@ -19,7 +19,7 @@ import iTunesLibrary
 
 final class AlbumMappingTests: XCTestCase {
 
-    func titletIsUsed() {
+    func titleIsUsed() {
 
         // Given an album with a title defined
         var album = ITLibAlbumStub()
@@ -33,9 +33,9 @@ final class AlbumMappingTests: XCTestCase {
         XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "The Meaning of Life")])
     }
 
-    func sortTitletIsUsedAsFallback() {
+    func sortTitleIsUsedAsFallback() {
 
-        // Given an album with a title defined
+        // Given an album with no title defined, but a sort title defined
         var album = ITLibAlbumStub()
         album.title = nil
         album.sortTitle = "Meaning of Life"
@@ -43,7 +43,7 @@ final class AlbumMappingTests: XCTestCase {
         // When we map the album to the aoide model
         let aoideAlbum = album.mapToAoide()
 
-        // Then the tile is used (not the sort title)
+        // Then the sort title is used
         XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "Meaning of Life")])
     }
 

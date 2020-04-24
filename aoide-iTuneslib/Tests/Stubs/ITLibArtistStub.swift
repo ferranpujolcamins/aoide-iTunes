@@ -14,10 +14,13 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import iTunesLibrary
+@testable import aoide_iTuneslib
 
-extension ITLibArtistProtocol {
-    func mapToAoide() -> Actor? {
-        (name ?? sortName).map(Actor.default)        
-    }
+struct ITLibArtistStub: ITLibArtistProtocol {
+    
+    var name: String? = nil
+
+    var persistentID: NSNumber = 0
+
+    var sortName: String? = nil
 }
