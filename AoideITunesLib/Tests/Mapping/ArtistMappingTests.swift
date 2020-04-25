@@ -22,29 +22,31 @@ final class ArtistMappingTests: XCTestCase {
 
     func testNameIsUsed() {
 
-        // Given an artist with a name defined
-        var artist = ITLibArtistStub()
-        artist.name = "The Offspring"
-        artist.sortName = "Offspring"
+        // Given a media item with an artist name defined
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.artist = ITLibArtistStub()
+        mediaItem.artist?.name = "The Offspring"
+        mediaItem.artist?.sortName = "Offspring"
 
-        // When we map the artist to the aoide model
-        let aoideActor = artist.mapToAoide()
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the name is used (not the sort name)
-        XCTAssertEqual(aoideActor, Actor.default(name: "The Offspring"))
+        // Then the artist name is mapped (not the artist sort name)
+        XCTAssertEqual(aoideTrack.actors, [Actor.default(name: "The Offspring")])
     }
 
     func testSortNameArtistIsUsedAsFallback() {
 
-        // Given an artist with no name defined, but a sort name defined
-        var artist = ITLibArtistStub()
-        artist.name = nil
-        artist.sortName = "Offspring"
+        // Given a media item with no artist name defined, but an artist sort name defined
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.artist = ITLibArtistStub()
+        mediaItem.artist?.name = nil
+        mediaItem.artist?.sortName = "Offspring"
 
-        // When we map the artist to the aoide model
-        let aoideActor = artist.mapToAoide()
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
 
         // Then the sort name is used
-        XCTAssertEqual(aoideActor, Actor.default(name: "Offspring"))
+        XCTAssertEqual(aoideTrack.actors, [Actor.default(name: "Offspring")])
     }
 }

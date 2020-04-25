@@ -22,57 +22,57 @@ final class AlbumMappingTests: XCTestCase {
 
     func testTitleIsUsed() {
 
-        // Given an album with a title defined
-        var album = ITLibAlbumStub()
-        album.title = "The Offspring"
-        album.sortTitle = "Offspring"
+        // Given a media item with an album title defined
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.album.title = "The Offspring"
+        mediaItem.album.sortTitle = "Offspring"
 
-        // When we map the album to the aoide model
-        let aoideAlbum = album.mapToAoide()
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the tile is used (not the sort title)
-        XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "The Offspring")])
+        // Then the album title is mapped (not the album sort title)
+        XCTAssertEqual(aoideTrack.album?.titles, [Title.default(name: "The Offspring")])
     }
 
     func testSortTitleIsUsedAsFallback() {
 
-        // Given an album with no title defined, but a sort title defined
-        var album = ITLibAlbumStub()
-        album.title = nil
-        album.sortTitle = "Offspring"
+        // Given a media item with no album title defined, but an album sort title defined
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.album.title = nil
+        mediaItem.album.sortTitle = "Offspring"
 
-        // When we map the album to the aoide model
-        let aoideAlbum = album.mapToAoide()
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the sort title is used
-        XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "Offspring")])
+        // Then the album sort title is mapped
+        XCTAssertEqual(aoideTrack.album?.titles, [Title.default(name: "Offspring")])
     }
 
     func testAlbumArtistIsUsed() {
 
-        // Given an album with an album artist defined
-        var album = ITLibAlbumStub()
-        album.albumArtist = "The Offspring"
-        album.sortAlbumArtist = "Offspring"
+        // Given a media item with an album artist defined
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.album.albumArtist = "The Offspring"
+        mediaItem.album.sortAlbumArtist = "Offspring"
 
         // When we map the album to the aoide model
-        let aoideAlbum = album.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the album artist is used (not the sort album artist)
-        XCTAssertEqual(aoideAlbum.actors, [Actor.default(name: "The Offspring")])
+        // Then the album artist is mapped (not the album sort artist)
+        XCTAssertEqual(aoideTrack.album?.actors, [Actor.default(name: "The Offspring")])
     }
 
     func testSortAlbumArtistIsUsedAsFallback() {
 
-        // Given an album with no album artist defined, but a sort album artist defined
-        var album = ITLibAlbumStub()
-        album.albumArtist = nil
-        album.sortAlbumArtist = "Offspring"
+        // Given a media item with no album artist defined, but an album sort artist defined
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.album.albumArtist = nil
+        mediaItem.album.sortAlbumArtist = "Offspring"
 
         // When we map the album to the aoide model
-        let aoideAlbum = album.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the sort album artist is used
-        XCTAssertEqual(aoideAlbum.actors, [Actor.default(name: "Offspring")])
+        // Then the sort album artist is mapped
+        XCTAssertEqual(aoideTrack.album?.actors, [Actor.default(name: "Offspring")])
     }
 }
