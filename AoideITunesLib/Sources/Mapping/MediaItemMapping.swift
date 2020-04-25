@@ -42,7 +42,10 @@ extension ITLibMediaItemProtocol {
     }
 
     func titles() -> [Title] {
-        [Title.default(name: title)]
+        (title.count > 0 ? title : sortTitle ?? "")
+            .map(Title.default)
+            .map(Array.pure)
+            ?? []
     }
 
     func sources() -> [Source] {

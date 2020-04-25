@@ -24,14 +24,14 @@ final class AlbumMappingTests: XCTestCase {
 
         // Given an album with a title defined
         var album = ITLibAlbumStub()
-        album.title = "The Meaning of Life"
-        album.sortTitle = "Meaning of Life"
+        album.title = "The Offspring"
+        album.sortTitle = "Offspring"
 
         // When we map the album to the aoide model
         let aoideAlbum = album.mapToAoide()
 
         // Then the tile is used (not the sort title)
-        XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "The Meaning of Life")])
+        XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "The Offspring")])
     }
 
     func testSortTitleIsUsedAsFallback() {
@@ -39,13 +39,13 @@ final class AlbumMappingTests: XCTestCase {
         // Given an album with no title defined, but a sort title defined
         var album = ITLibAlbumStub()
         album.title = nil
-        album.sortTitle = "Meaning of Life"
+        album.sortTitle = "Offspring"
 
         // When we map the album to the aoide model
         let aoideAlbum = album.mapToAoide()
 
         // Then the sort title is used
-        XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "Meaning of Life")])
+        XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "Offspring")])
     }
 
     func testAlbumArtistIsUsed() {
