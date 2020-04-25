@@ -17,15 +17,17 @@ import Foundation
 
 public struct Actor: Equatable {
 
+    public init(name: String, role: ActorRole, precedence: ActorPrecedence) {
+        self.name = name
+        self.role = role
+        self.precedence = precedence
+    }
+
     public let name: String
 
     public let role: ActorRole
 
     public let precedence: ActorPrecedence
-
-    public static func `default`(name: String) -> Actor {
-        Actor(name: name, role: .default, precedence: .default)
-    }
 }
 
 public enum ActorRole {

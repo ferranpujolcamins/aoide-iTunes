@@ -25,11 +25,19 @@ extension ITLibMediaItemProtocol {
             release: release(),
             album: _album.mapToAoide(),
             titles: titles(),
-            actors: _artist?.mapToAoide().map(Array.pure) ?? [],
+            actors: actors(),
             indexes: indexes(),
             markers: markers(),
             tags: tags()
         )
+    }
+
+    func sources() -> [Source] {
+        [Source(
+            uri: location!.absoluteString,
+            content_type: "iTunes",
+            content: .audio(audioContent())
+        )]
     }
 
     func release() -> Release {
@@ -48,12 +56,12 @@ extension ITLibMediaItemProtocol {
             ?? []
     }
 
-    func sources() -> [Source] {
-        [Source(
-            uri: location!.absoluteString,
-            content_type: "iTunes",
-            content: .audio(audioContent())
-        )]
+    func actors() -> [Actor] {
+        [
+            _artist?.mapToAoide(),
+            (composer.count > 0 ? composer : sortComposer)
+                .map { Actor(name: $0, role: .composer, precedence: .default) }
+        ].compactMap { $0 }
     }
 
     func audioContent() -> AudioContent {

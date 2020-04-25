@@ -21,10 +21,12 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The artist associated with this media item. */
     open var artist: ITLibArtist? { get }
 
+✅ Mapped to `actors`
 
     /** @abstract The name of the composer associated with this media item.  May be empty. */
     open var composer: String { get }
 
+✅ Mapped to `actors` if composer is empty
 
     /** @abstract The name of the composer associated with this media item that should be used for sorting purposes. If nil, use the composer field. */
     open var sortComposer: String? { get }

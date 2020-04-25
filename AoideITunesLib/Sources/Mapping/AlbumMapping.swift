@@ -25,7 +25,7 @@ extension ITLibAlbumProtocol {
                 .map(Array.pure)
                 ?? [],
             actors: (albumArtist ?? sortAlbumArtist)
-                .map(Actor.default)
+                .map { Actor(name: $0, role: .artist, precedence: .default ) }
                 .map(Array.pure)
                 ?? [],
             compilation: isCompilation

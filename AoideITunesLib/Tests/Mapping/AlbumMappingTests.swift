@@ -20,7 +20,7 @@ import AoideModel
 
 final class AlbumMappingTests: XCTestCase {
 
-    func testTitleIsUsed() {
+    func testTitleIsMapped() {
 
         // Given a media item with an album title defined
         var mediaItem = ITLibMediaItemStub()
@@ -34,7 +34,7 @@ final class AlbumMappingTests: XCTestCase {
         XCTAssertEqual(aoideTrack.album?.titles, [Title.default(name: "The Offspring")])
     }
 
-    func testSortTitleIsUsedAsFallback() {
+    func testSortTitleIsMappedAsFallback() {
 
         // Given a media item with no album title defined, but an album sort title defined
         var mediaItem = ITLibMediaItemStub()
@@ -48,7 +48,7 @@ final class AlbumMappingTests: XCTestCase {
         XCTAssertEqual(aoideTrack.album?.titles, [Title.default(name: "Offspring")])
     }
 
-    func testAlbumArtistIsUsed() {
+    func testAlbumArtistIsMappedToActors() {
 
         // Given a media item with an album artist defined
         var mediaItem = ITLibMediaItemStub()
@@ -59,10 +59,14 @@ final class AlbumMappingTests: XCTestCase {
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the album artist is mapped (not the album sort artist)
-        XCTAssertEqual(aoideTrack.album?.actors, [Actor.default(name: "The Offspring")])
+        // as artist with default precedence
+        XCTAssertEqual(
+            aoideTrack.album?.actors,
+            [Actor(name: "The Offspring", role: .artist, precedence: .default)]
+        )
     }
 
-    func testSortAlbumArtistIsUsedAsFallback() {
+    func testSortAlbumArtistIsMappedToActorsAsFallback() {
 
         // Given a media item with no album artist defined, but an album sort artist defined
         var mediaItem = ITLibMediaItemStub()
@@ -72,7 +76,10 @@ final class AlbumMappingTests: XCTestCase {
         // When we map the album to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the sort album artist is mapped
-        XCTAssertEqual(aoideTrack.album?.actors, [Actor.default(name: "Offspring")])
+        // Then the sort album artist is mapped as artist with default precedence
+        XCTAssertEqual(
+            aoideTrack.album?.actors,
+            [Actor(name: "Offspring", role: .artist, precedence: .default)]
+        )
     }
 }
