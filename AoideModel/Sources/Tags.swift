@@ -19,6 +19,11 @@ public typealias Tags = Dictionary<String?, [PlainTag]>
 
 public struct PlainTag {
 
+    public init(label: String?, score: Score) {
+        self.label = label
+        self.score = score
+    }
+
     public let label: String?
 
     public let score: Score

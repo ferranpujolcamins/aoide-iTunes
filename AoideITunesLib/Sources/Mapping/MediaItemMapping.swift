@@ -17,6 +17,10 @@ import Foundation
 import AoideModel
 import ITunesModel
 
+var reservedFacertMixxxOrg: String { "mixxx.org" }
+var ratingLabel: String { "rating" }
+var maxRating: Int { 5 }
+
 extension ITLibMediaItemProtocol {
 
     func mapToAoide() -> Track {
@@ -101,6 +105,15 @@ extension ITLibMediaItemProtocol {
     }
 
     func tags() -> Tags {
-        [:]
+        Dictionary([
+            ratingTag()
+        ], uniquingKeysWith: +)
+    }
+
+    func ratingTag() -> (String, [PlainTag]) {
+        guard rating > 0 else { return (reservedFacertMixxxOrg, [] )}
+        
+        let score = min(1, Float64(rating) / Float64(maxRating))
+        return (reservedFacertMixxxOrg, [PlainTag(label: ratingLabel, score: score)])
     }
 }

@@ -31,6 +31,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The name of the composer associated with this media item that should be used for sorting purposes. If nil, use the composer field. */
     open var sortComposer: String? { get }
 
+✅ Mapped to `tags`
 
     /** @abstract The rating of this media item. */
     open var rating: Int { get }
