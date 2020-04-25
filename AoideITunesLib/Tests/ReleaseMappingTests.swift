@@ -13,15 +13,28 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import iTunesLibrary
+import XCTest
+import ITunesModelStubs
+import AoideModel
+@testable import AoideITunesLib
 
-public protocol ITLibArtistProtocol {
+final class ReleaseMappingTests: XCTestCase {
 
-    var name: String? { get }
+    func testReleaseDateIsMapped() {
+        // Given a media item with a release date
+        let date = Date()
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.releaseDate = date
 
-    var persistentID: NSNumber { get }
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
 
-    var sortName: String? { get }
+        // Then the release date is mapped to `release`
+        XCTAssertEqual(aoideTrack.release, Release(
+            released_at: date,
+            released_by: nil,
+            copyright: nil,
+            licenses: []
+        ))
+    }
 }
-
-extension ITLibArtist: ITLibArtistProtocol {}

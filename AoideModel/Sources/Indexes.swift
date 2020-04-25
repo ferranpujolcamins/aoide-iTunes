@@ -17,12 +17,23 @@ import Foundation
 
 public struct Index {
 
+    public init(number: UInt16, total: UInt16) {
+        self.number = number
+        self.total = total
+    }
+
     public let number: UInt16
 
     public let total: UInt16
 }
 
 public struct Indexes {
+
+    public init(disc: Index, track: Index, movement: Index) {
+        self.disc = disc
+        self.track = track
+        self.movement = movement
+    }
 
     public let disc: Index
 

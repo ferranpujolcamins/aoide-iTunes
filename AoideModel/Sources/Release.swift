@@ -15,7 +15,20 @@
 
 import Foundation
 
-public struct Release {
+public struct Release: Equatable {
+
+    public init(
+        released_at: Date?,
+        released_by: String?,
+        copyright: String?,
+        licenses: [String]
+    ) {
+        self.released_at = released_at
+        self.released_by = released_by
+        self.copyright = copyright
+        self.licenses = licenses
+    }
+
 
     public let released_at: Date?
 

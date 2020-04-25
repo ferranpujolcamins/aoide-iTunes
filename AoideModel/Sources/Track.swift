@@ -16,6 +16,26 @@
 import Foundation
 
 public struct Track {
+    public init(
+        media_sources: [Source],
+        release: Release?,
+        album: Album?,
+        titles: [Title],
+        actors: [Actor],
+        indexes: Indexes,
+        markers: Markers,
+        tags: Tags
+    ) {
+        self.media_sources = media_sources
+        self.release = release
+        self.album = album
+        self.titles = titles
+        self.actors = actors
+        self.indexes = indexes
+        self.markers = markers
+        self.tags = tags
+    }
+
 //    public let collections: [Collection]
 
     public let media_sources: [Source]

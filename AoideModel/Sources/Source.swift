@@ -16,13 +16,21 @@
 import Foundation
 
 public struct Source {
+
+    public init(uri: String, content_type: String, content: Content) {
+        
+        self.uri = uri
+        self.contentType = content_type
+        self.content = content
+    }
+
     
     public let uri: String
 
     // The content_type uniquely identifies a Source of
     // a Track, i.e. no duplicate content types are allowed
     // among the track sources of each track.
-    public let content_type: String
+    public let contentType: String
 
     public let content: Content
 
@@ -30,5 +38,5 @@ public struct Source {
 }
 
 public enum Content {
-    case audio
+    case audio(AudioContent)
 }

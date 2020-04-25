@@ -20,7 +20,7 @@ import AoideModel
 
 final class AlbumMappingTests: XCTestCase {
 
-    func titleIsUsed() {
+    func testTitleIsUsed() {
 
         // Given an album with a title defined
         var album = ITLibAlbumStub()
@@ -34,7 +34,7 @@ final class AlbumMappingTests: XCTestCase {
         XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "The Meaning of Life")])
     }
 
-    func sortTitleIsUsedAsFallback() {
+    func testSortTitleIsUsedAsFallback() {
 
         // Given an album with no title defined, but a sort title defined
         var album = ITLibAlbumStub()
@@ -48,7 +48,7 @@ final class AlbumMappingTests: XCTestCase {
         XCTAssertEqual(aoideAlbum.titles, [Title.default(name: "Meaning of Life")])
     }
 
-    func albumArtistIsUsed() {
+    func testAlbumArtistIsUsed() {
 
         // Given an album with an album artist defined
         var album = ITLibAlbumStub()
@@ -62,7 +62,7 @@ final class AlbumMappingTests: XCTestCase {
         XCTAssertEqual(aoideAlbum.actors, [Actor.default(name: "The Offspring")])
     }
 
-    func sortAlbumArtistIsUsedAsFallback() {
+    func testSortAlbumArtistIsUsedAsFallback() {
 
         // Given an album with no album artist defined, but a sort album artist defined
         var album = ITLibAlbumStub()

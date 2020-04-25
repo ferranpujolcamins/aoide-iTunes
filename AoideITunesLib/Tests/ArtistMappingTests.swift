@@ -20,7 +20,7 @@ import AoideModel
 
 final class ArtistMappingTests: XCTestCase {
 
-    func nameIsUsed() {
+    func testNameIsUsed() {
 
         // Given an artist with a name defined
         var artist = ITLibArtistStub()
@@ -34,7 +34,7 @@ final class ArtistMappingTests: XCTestCase {
         XCTAssertEqual(aoideActor, Actor.default(name: "The Offspring"))
     }
 
-    func sortNameArtistIsUsedAsFallback() {
+    func testSortNameArtistIsUsedAsFallback() {
 
         // Given an artist with no name defined, but a sort name defined
         var artist = ITLibArtistStub()

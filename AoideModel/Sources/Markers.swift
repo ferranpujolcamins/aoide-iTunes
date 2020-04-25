@@ -17,6 +17,14 @@ import Foundation
 
 public struct Markers {
 
+    public init(positions: PositionMarkers, beats: BeatMarkers, keys: KeyMarkers) {
+
+        self.positions = positions
+        self.beats = beats
+        self.keys = keys
+    }
+
+
     public let positions: PositionMarkers
 
     public let beats: BeatMarkers
@@ -29,9 +37,18 @@ public struct PositionMarkers {
     public let state: State
 
     public let markers: [PositionMarker]
+
+    public static var empty: PositionMarkers {
+        PositionMarkers(state: .readOnly, markers: [])
+    }
 }
 
 public struct BeatMarkers {
+
+    public init(state: State, markers: [BeatMarker]) {
+        self.state = state
+        self.markers = markers
+    }
 
     public let state: State
 
@@ -43,6 +60,10 @@ public struct KeyMarkers {
     public let state: State
 
     public let markers: [KeyMarker]
+
+    public static var empty: KeyMarkers {
+        KeyMarkers(state: .readOnly, markers: [])
+    }
 }
 
 public struct PositionMarker {
@@ -61,6 +82,21 @@ public struct PositionMarker {
 }
 
 public struct BeatMarker {
+
+    public init(
+        start: PositionMs,
+        end: PositionMs?,
+        tempo: TempoBpm?,
+        timing: TimeSignature?,
+        beat_at_start: BeatNumber?
+    ) {
+        self.start = start
+        self.end = end
+        self.tempo = tempo
+        self.timing = timing
+        self.beat_at_start = beat_at_start
+    }
+
 
     public let start: PositionMs
 

@@ -17,6 +17,23 @@ import Foundation
 
 public struct AudioContent {
     
+    public init(
+        channels: Channels,
+        duration: DurationMs,
+        sample_rate: SampleRateHz,
+        bit_rate: BitRateBps,
+        loudness: LoudnessLufs?,
+        encoder: AudioEncoder?
+    ) {
+        self.channels = channels
+        self.duration = duration
+        self.sample_rate = sample_rate
+        self.bit_rate = bit_rate
+        self.loudness = loudness
+        self.encoder = encoder
+    }
+
+    
     public let channels: Channels
 
     public let duration: DurationMs

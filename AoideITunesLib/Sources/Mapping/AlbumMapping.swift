@@ -22,10 +22,12 @@ extension ITLibAlbumProtocol {
         Album(
             titles: (title ?? sortTitle)
                 .map(Title.default)
-                .asArray(),
+                .map(Array.pure)
+                ?? [],
             actors: (albumArtist ?? sortAlbumArtist)
                 .map(Actor.default)
-                .asArray(),
+                .map(Array.pure)
+                ?? [],
             compilation: isCompilation
         )
     }

@@ -15,8 +15,8 @@
 
 import Foundation
 
-extension Optional {
-    func asArray() -> [Wrapped] {
-        map { [$0] } ?? []
+extension Array {
+    static func pure(_ e: Element) -> Self {
+        [e]
     }
 }
