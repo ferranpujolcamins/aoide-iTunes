@@ -30,6 +30,28 @@ extension Date {
     }
 }
 
+extension Optional {
+    /// Return the first value that is not nil
+    static func first(_ optionals: [Optional]) -> Optional {
+        for optional in optionals {
+            if optional != nil {
+                return optional
+            }
+        }
+        return nil
+    }
+}
+
+func validate<Wrapped>(_ optional: Wrapped?, _ condition: (Wrapped) -> Bool) -> Wrapped? {
+    optional.flatMap { value in
+        if condition(value) {
+            return value
+        } else {
+            return nil
+        }
+    }
+}
+
 func validate<Wrapped>(_ value: Wrapped, _ condition: (Wrapped) -> Bool) -> Wrapped? {
     if condition(value) {
         return value

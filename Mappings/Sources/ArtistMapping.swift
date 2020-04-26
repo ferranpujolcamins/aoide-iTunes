@@ -19,11 +19,13 @@ import ITunesModel
 
 extension ITLibArtistProtocol {
     public func mapToAoide() -> Actor? {
-        let trimmedName = name?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let trimmedSortName = sortName?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let trimmedName = name?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedSortName = sortName?.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        return (validate(trimmedName, { !$0.isEmpty })
-            ?? validate(trimmedSortName, { !$0.isEmpty }))
+        return Optional.first([
+                validate(trimmedName, { !$0.isEmpty }),
+                validate(trimmedSortName, { !$0.isEmpty })
+            ])
             .map { Actor(name: $0, role: .artist, precedence: .default) }
     }
 }

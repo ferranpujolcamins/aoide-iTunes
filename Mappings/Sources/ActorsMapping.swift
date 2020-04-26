@@ -27,10 +27,12 @@ extension ITLibMediaItemProtocol {
 
     func composer() -> Actor? {
         let trimmedComposer = composer.trimmingCharacters(in: .whitespacesAndNewlines)
-        let trimmedSortComposer = sortComposer?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let trimmedSortComposer = sortComposer?.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        return (validate(trimmedComposer, { !$0.isEmpty })
-            ?? validate(trimmedSortComposer, { !$0.isEmpty }))
+        return Optional.first([
+                validate(trimmedComposer, { !$0.isEmpty }),
+                validate(trimmedSortComposer, { !$0.isEmpty })
+            ])
             .map { Actor(name: $0, role: .composer, precedence: .default) }
     }
 }
