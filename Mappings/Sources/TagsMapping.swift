@@ -27,7 +27,8 @@ extension ITLibMediaItemProtocol {
     func tags() -> Tags {
         Dictionary([
             genreTag(),
-            ratingTag()
+            ratingTag(),
+            commentsTag()
         ], uniquingKeysWith: +)
     }
 
@@ -42,5 +43,12 @@ extension ITLibMediaItemProtocol {
 
         let score = min(1, Float64(rating) / Float64(maxRating))
         return (reservedFacetMixxxOrg, [PlainTag(label: ratingLabel, score: score)])
+    }
+
+    func commentsTag() -> (String, [PlainTag]) {
+        let trimmedComments = (comments ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmedComments.count > 0 else { return (reservedFacetMixxxOrg, []) }
+
+        return (commentFacet, [PlainTag(label: trimmedComments, score: 1)])
     }
 }

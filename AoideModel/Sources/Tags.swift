@@ -17,7 +17,7 @@ import Foundation
 
 public typealias Tags = Dictionary<String?, [PlainTag]>
 
-public struct PlainTag {
+public struct PlainTag: Equatable {
 
     public init(label: String?, score: Score) {
         self.label = label

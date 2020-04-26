@@ -97,6 +97,6 @@ final class TagsMappingTests: XCTestCase {
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the comments are not mapped into `tags`
-        XCTAssertEqual(aoideTrack.tags[commentFacet]?.count, 0)
+        XCTAssertEqual(aoideTrack.tags[commentFacet], nil)
     }
 }
