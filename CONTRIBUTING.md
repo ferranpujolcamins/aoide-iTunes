@@ -41,10 +41,12 @@ can be set to an arbitrary value to use in tests.
     /** @abstract Whether this media item's rating is computed. */
     open var isRatingComputed: Bool { get }
 
+✅ Mapped to `markers`(Position marker)
 
     /** @abstract If non-zero, the actual time playback for this media item will start instead of 0:00 (in milliseconds). */
     open var startTime: Int { get }
 
+✅ Mapped to `markers`(Position marker)
 
     /** @abstract If non-zero, the actual time playback for this media item will stop vs. the total time (in milliseconds). */
     open var stopTime: Int { get }
@@ -152,18 +154,22 @@ can be set to an arbitrary value to use in tests.
     /** @abstract Whether this media item was purchased. */
     open var isPurchased: Bool { get }
 
+❌ Not mapped
 
     /** @abstract Whether this media item is iTunes Match or iTunes in the Cloud. */
     open var isCloud: Bool { get }
 
+❌ Not mapped
 
     /** @abstract Whether this media item is DRM protected. */
     open var isDRMProtected: Bool { get }
 
+❌ Not mapped
 
     /** @abstract Whether this media item is a video media item (video podcast, movie, etc). */
     open var isVideo: Bool { get }
 
+❌ Not mapped
 
     /** @abstract The video information of this media item (implies this media item is a video media item). */
     open var videoInfo: ITLibMediaItemVideoInfo? { get }
@@ -183,14 +189,17 @@ can be set to an arbitrary value to use in tests.
     @available(*, deprecated)
     open var fileType: Int { get }
 
+❌ Not mapped
 
     /** @abstract The number of times this media item has been skiped. */
     open var skipCount: Int { get }
 
+❌ Not mapped
 
     /** @abstract The date and time when this media item was last skipped. */
     open var skipDate: Date? { get }
 
+❌ Not mapped
 
     /** @abstract The voice-over language of this media item */
     open var voiceOverLanguage: String? { get }
@@ -203,6 +212,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The volume normalization energy applied to this media item. */
     open var volumeNormalizationEnergy: Int { get }
 
+❌ Not mapped
 
     /** @abstract Whether the user has disabled this media item. */
     open var isUserDisabled: Bool { get }

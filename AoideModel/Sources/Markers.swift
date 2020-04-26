@@ -34,6 +34,11 @@ public struct Markers {
 
 public struct PositionMarkers {
 
+    public init(state: State, markers: [PositionMarker]) {
+        self.state = state
+        self.markers = markers
+    }
+
     public let state: State
 
     public let markers: [PositionMarker]
@@ -67,6 +72,23 @@ public struct KeyMarkers {
 }
 
 public struct PositionMarker {
+
+    public init(
+        start: PositionMs?,
+        end: PositionMs?,
+        type: PositionMarkerType,
+        number: Int32?,
+        color: ColorRgb?,
+        label: String?
+    ) {
+        self.start = start
+        self.end = end
+        self.type = type
+        self.number = number
+        self.color = color
+        self.label = label
+    }
+
 
     public let start: PositionMs?
 
