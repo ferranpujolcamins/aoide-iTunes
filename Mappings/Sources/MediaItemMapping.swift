@@ -56,14 +56,6 @@ extension ITLibMediaItemProtocol {
             ?? []
     }
 
-    func actors() -> [Actor] {
-        [
-            _artist?.mapToAoide(),
-            (composer.count > 0 ? composer : sortComposer)
-                .map { Actor(name: $0, role: .composer, precedence: .default) }
-        ].compactMap { $0 }
-    }
-
     func audioContent() -> AudioContent {
         AudioContent(
             channels: .layout(.stereo),

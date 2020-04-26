@@ -60,8 +60,8 @@ final class ArtistMappingTests: XCTestCase {
 
         // Given a media item with a composer defined
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.composer = "Steve Reich"
-        mediaItem.sortComposer = "Reich, Steve"
+        mediaItem.composer = "  Steve Reich "
+        mediaItem.sortComposer = " Reich, Steve "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
@@ -78,7 +78,7 @@ final class ArtistMappingTests: XCTestCase {
         // Given a media item with no artist name defined, but an artist sort name defined
         var mediaItem = ITLibMediaItemStub()
         mediaItem.composer = "    "
-        mediaItem.sortComposer = "Reich, Steve"
+        mediaItem.sortComposer = " Reich, Steve  "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()

@@ -14,26 +14,23 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
+import AoideModel
+import ITunesModel
 
-extension Array {
-    static func pure(_ e: Element) -> Self {
-        [e]
+extension ITLibMediaItemProtocol {
+    func actors() -> [Actor] {
+        [
+            _artist?.mapToAoide(),
+            composer()
+        ].compactMap { $0 }
     }
-}
 
-extension Date {
-    static func forYear(_ year: Int) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy"
-        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
-        return dateFormatter.date(from: "\(year)")
-    }
-}
+    func composer() -> Actor? {
+        let trimmedComposer = composer.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedSortComposer = sortComposer?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
 
-func validate<Wrapped>(_ value: Wrapped, _ condition: (Wrapped) -> Bool) -> Wrapped? {
-    if condition(value) {
-        return value
-    } else {
-        return nil
+        return (validate(trimmedComposer, { !$0.isEmpty })
+            ?? validate(trimmedSortComposer, { !$0.isEmpty }))
+            .map { Actor(name: $0, role: .composer, precedence: .default) }
     }
 }
