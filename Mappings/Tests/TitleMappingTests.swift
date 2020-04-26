@@ -23,8 +23,8 @@ final class TitleMappingTests: XCTestCase {
     func testTitleIsMapped() {
         // Given a media item with a title and sort title
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.title = "The Meaning of Life"
-        mediaItem.sortTitle = "Meaning of Life"
+        mediaItem.title = "  The Meaning of Life  "
+        mediaItem.sortTitle = " Meaning of Life  "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
@@ -37,7 +37,7 @@ final class TitleMappingTests: XCTestCase {
         // Given a media item with no title, but a sort title defined
         var mediaItem = ITLibMediaItemStub()
         mediaItem.title = "    "
-        mediaItem.sortTitle = "Meaning of Life"
+        mediaItem.sortTitle = "  Meaning of Life "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()

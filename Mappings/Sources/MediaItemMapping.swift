@@ -50,7 +50,11 @@ extension ITLibMediaItemProtocol {
     }
 
     func titles() -> [Title] {
-        (title.count > 0 ? title : sortTitle ?? "")
+        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedSortTitle = sortTitle?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+        return (validate(trimmedTitle, { !$0.isEmpty })
+            ?? validate(trimmedSortTitle, { !$0.isEmpty }))
             .map(Title.default)
             .map(Array.pure)
             ?? []
