@@ -61,14 +61,17 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The genre associated with this media item. May be empty. */
     open var genre: String { get }
 
+❌ Not mapped
 
     /** @abstract This media item's file kind (ex. MPEG audio file). */
     open var kind: String? { get }
 
+❌ Not mapped
 
     /** @abstract This media item's media kind. */
     open var mediaKind: ITLibMediaItemMediaKind { get }
 
+❌ Not mapped
 
     /** @abstract The size in bytes of this media item on disk. */
     open var fileSize: UInt64 { get }
@@ -79,6 +82,7 @@ can be set to an arbitrary value to use in tests.
     @available(*, deprecated)
     open var size: Int { get }
 
+✅ Mapped to `sources`
 
     /** @abstract The length of this media item in milliseconds. */
     open var totalTime: Int { get }
@@ -103,6 +107,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The content rating of this media item's lyrics. */
     open var lyricsContentRating: ITLibMediaItemLyricsContentRating { get }
 
+❌ Not mapped
 
     /** @abstract The extended content rating of this media item. */
     open var contentRating: String? { get }
@@ -117,10 +122,12 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The date and media item this media item was added to the iTunes database. */
     open var addedDate: Date? { get }
 
+✅ Mapped to `sources`
 
     /** @abstract The bitrate of this media item in kbps. */
     open var bitrate: Int { get }
 
+✅ Mapped to `sources`
 
     /** @abstract The sample rate of this media item in samples per second. */
     open var sampleRate: Int { get }
@@ -145,6 +152,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The play status for this media.  Represents partially played and unplayed states for videos and podcasts. Other media kinds always return "none". */
     open var playStatus: ITLibMediaItemPlayStatus { get } // added in 12.4
 
+✅ Mapped to `sources`
 
     /** @abstract The location of this media item on disk. */
     open var location: URL? { get }
@@ -162,6 +170,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract Any comments associated with this media item. */
     open var comments: String? { get }
 
+❌ Not mapped
 
     /** @abstract Whether this media item was purchased. */
     open var isPurchased: Bool { get }
@@ -234,6 +243,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The grouping of this media item. */
     open var grouping: String? { get }
 
+❌ Not mapped
 
     /** @abstract The type of this media item with respect to its location. */
     open var locationType: ITLibMediaItemLocationType { get }

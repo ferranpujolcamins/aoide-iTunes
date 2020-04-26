@@ -28,7 +28,7 @@ final class AlbumMappingTests: XCTestCase {
         mediaItem.album.sortTitle = "  Offspring "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the album title is mapped (not the album sort title)
         // with leading and trailing whitespace removed
@@ -43,7 +43,7 @@ final class AlbumMappingTests: XCTestCase {
         mediaItem.album.sortTitle = "  Offspring  "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the album sort title is mapped
         // with leading and trailing whitespace removed
@@ -58,7 +58,7 @@ final class AlbumMappingTests: XCTestCase {
         mediaItem.album.sortAlbumArtist = "  Offspring "
 
         // When we map the album to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the album artist is mapped (not the album sort artist)
         // as artist with default precedence and leading and trailing whitespace removed
@@ -76,7 +76,7 @@ final class AlbumMappingTests: XCTestCase {
         mediaItem.album.sortAlbumArtist = " Offspring "
 
         // When we map the album to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the sort album artist is mapped as artist with default precedence
         // and leading and trailing whitespace removed

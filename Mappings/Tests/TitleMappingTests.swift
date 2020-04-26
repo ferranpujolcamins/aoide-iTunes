@@ -27,7 +27,7 @@ final class TitleMappingTests: XCTestCase {
         mediaItem.sortTitle = " Meaning of Life  "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the title is mapped to `titles` with leading and trailing whitespace removed
         XCTAssertEqual(aoideTrack.titles, [Title.default(name: "The Meaning of Life")])
@@ -40,7 +40,7 @@ final class TitleMappingTests: XCTestCase {
         mediaItem.sortTitle = "  Meaning of Life "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the sort title is mapped to `titles` with leading and trailing whitespace removed
         XCTAssertEqual(aoideTrack.titles, [Title.default(name: "Meaning of Life")])

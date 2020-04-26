@@ -15,12 +15,12 @@
 
 import Foundation
 
-public enum Channels {
+public enum Channels: Equatable {
     case count(UInt16)
     case layout(ChannelLayout)
 }
 
-public enum ChannelLayout {
+public enum ChannelLayout: Equatable {
     case mono
     case dualMono
     case stereo

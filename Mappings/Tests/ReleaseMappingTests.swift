@@ -27,7 +27,7 @@ final class ReleaseMappingTests: XCTestCase {
         mediaItem.releaseDate = date
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the release date is mapped to `release` (not the release year)
         XCTAssertEqual(aoideTrack.release, Release(
@@ -45,7 +45,7 @@ final class ReleaseMappingTests: XCTestCase {
         mediaItem.year = 2002
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the release year is mapped to `release`
         XCTAssertEqual(aoideTrack.release, Release(

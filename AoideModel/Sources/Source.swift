@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Source {
+public struct Source: Equatable {
 
     public init(uri: String, content_type: String, content: Content) {
         
@@ -37,6 +37,6 @@ public struct Source {
 //    public let artwork: Artwork?
 }
 
-public enum Content {
+public enum Content: Equatable {
     case audio(AudioContent)
 }

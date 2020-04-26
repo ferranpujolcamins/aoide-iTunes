@@ -26,7 +26,7 @@ final class TagsMappingTests: XCTestCase {
         mediaItem.rating = 3
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the rating is mapped into `tags`
         XCTAssertTrue(aoideTrack.tags[reservedFacetMixxxOrg]!.contains(where: { tag in
@@ -40,7 +40,7 @@ final class TagsMappingTests: XCTestCase {
         mediaItem.rating = 0
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the rating is not mapped into `tags`
         XCTAssertFalse(aoideTrack.tags[reservedFacetMixxxOrg]!.contains(where: { tag in
@@ -54,7 +54,7 @@ final class TagsMappingTests: XCTestCase {
         mediaItem.genre = "   House   "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the genre is mapped into `tags` with leading and trailing whitespace removed
         XCTAssertTrue(aoideTrack.tags[genreFacet]!.contains(where: { tag in
@@ -68,7 +68,7 @@ final class TagsMappingTests: XCTestCase {
         mediaItem.genre = "    "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the genre is not mapped into `tags`
         XCTAssertEqual(aoideTrack.tags[genreFacet]?.count, 0)
@@ -80,7 +80,7 @@ final class TagsMappingTests: XCTestCase {
         mediaItem.comments = "   Sick beat!         "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the comments are mapped into `tags` with leading and trailing whitespace removed
         XCTAssertTrue(aoideTrack.tags[commentFacet]!.contains(where: { tag in
@@ -94,7 +94,7 @@ final class TagsMappingTests: XCTestCase {
         mediaItem.genre = "     "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the comments are not mapped into `tags`
         XCTAssertEqual(aoideTrack.tags[commentFacet], nil)

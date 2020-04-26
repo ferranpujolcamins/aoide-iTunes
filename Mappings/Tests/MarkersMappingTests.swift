@@ -26,7 +26,7 @@ final class MarkersMappingTests: XCTestCase {
         mediaItem.beatsPerMinute = 128
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the bpm is mapped as a marker
         XCTAssertEqual(aoideTrack.markers, Markers(
@@ -51,7 +51,7 @@ final class MarkersMappingTests: XCTestCase {
         mediaItem.beatsPerMinute = 0
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the bpm is not mapped as a marker
         XCTAssertEqual(aoideTrack.markers, Markers(
@@ -69,7 +69,7 @@ final class MarkersMappingTests: XCTestCase {
         mediaItem.stopTime = 100
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the main marker is included
         XCTAssertEqual(aoideTrack.markers, Markers(
@@ -96,7 +96,7 @@ final class MarkersMappingTests: XCTestCase {
         mediaItem.stopTime = 90
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the main marker is included
         XCTAssertEqual(aoideTrack.markers, Markers(
@@ -123,7 +123,7 @@ final class MarkersMappingTests: XCTestCase {
         mediaItem.stopTime = 90
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the main marker is included
         XCTAssertEqual(aoideTrack.markers, Markers(
@@ -150,7 +150,7 @@ final class MarkersMappingTests: XCTestCase {
         mediaItem.stopTime = 100
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the main marker is not included
         XCTAssertEqual(aoideTrack.markers, Markers(

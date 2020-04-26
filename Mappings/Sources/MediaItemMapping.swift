@@ -19,9 +19,9 @@ import ITunesModel
 
 extension ITLibMediaItemProtocol {
 
-    public func mapToAoide() -> Track {
+    public func mapToAoide(mimeType: String) -> Track {
         Track(
-            media_sources: sources(),
+            media_sources: sources(mimeType: mimeType),
             release: release(),
             album: _album.mapToAoide(),
             titles: titles(),
@@ -32,10 +32,10 @@ extension ITLibMediaItemProtocol {
         )
     }
 
-    func sources() -> [Source] {
+    func sources(mimeType: String) -> [Source] {
         [Source(
             uri: location!.absoluteString,
-            content_type: "iTunes",
+            content_type: mimeType,
             content: .audio(audioContent())
         )]
     }

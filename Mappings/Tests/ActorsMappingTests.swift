@@ -29,7 +29,7 @@ final class ArtistMappingTests: XCTestCase {
         mediaItem.artist?.sortName = "  Offspring "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the artist name is mapped (not the artist sort name) as artist with default precedence
         // and leading and trailing whitespace removed
@@ -48,7 +48,7 @@ final class ArtistMappingTests: XCTestCase {
         mediaItem.artist?.sortName = "  Offspring   "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the sort name is mapped as artist with default precedence
         // and leading and trailing whitespace removed
@@ -66,7 +66,7 @@ final class ArtistMappingTests: XCTestCase {
         mediaItem.sortComposer = " Reich, Steve "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the composer is mapped (not the artist sort name) as composer with default precedence
         // and leading and trailing whitespace removed
@@ -84,7 +84,7 @@ final class ArtistMappingTests: XCTestCase {
         mediaItem.sortComposer = " Reich, Steve  "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the sort name is mapped as artist with default precedence
         // and leading and trailing whitespace removed
@@ -103,7 +103,7 @@ final class ArtistMappingTests: XCTestCase {
         mediaItem.composer = "  Steve Reich  "
 
         // When we map the media item to the aoide model
-        let aoideTrack = mediaItem.mapToAoide()
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the artist and the composer are mapped to actors
         // with leading and trailing whitespace removed
