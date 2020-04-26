@@ -29,7 +29,7 @@ final class TagsMappingTests: XCTestCase {
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the rating is mapped into `tags`
-        XCTAssertTrue(aoideTrack.tags[reservedFacertMixxxOrg]!.contains(where: { tag in
+        XCTAssertTrue(aoideTrack.tags[reservedFacetMixxxOrg]!.contains(where: { tag in
             tag.label == ratingLabel && tag.score == 0.6
         }))
     }
@@ -43,8 +43,34 @@ final class TagsMappingTests: XCTestCase {
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the rating is not mapped into `tags`
-        XCTAssertFalse(aoideTrack.tags[reservedFacertMixxxOrg]!.contains(where: { tag in
+        XCTAssertFalse(aoideTrack.tags[reservedFacetMixxxOrg]!.contains(where: { tag in
             tag.label == ratingLabel
         }))
+    }
+
+    func testGenreIsMapped() {
+        // Given a media item with a genre
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.genre = "House"
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
+
+        // Then the genre is mapped into `tags`
+        XCTAssertTrue(aoideTrack.tags[genreFacet]!.contains(where: { tag in
+            tag.label == "House" && tag.score == 1
+        }))
+    }
+
+    func testemptyGenreIsNotMapped() {
+        // Given a media item with an empty genre
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.genre = ""
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
+
+        // Then the genre is not mapped into `tags`
+        XCTAssertEqual(aoideTrack.tags[genreFacet]?.count, 0)
     }
 }

@@ -21,14 +21,21 @@ extension ITLibMediaItemProtocol {
 
     func tags() -> Tags {
         Dictionary([
+            genreTag(),
             ratingTag()
         ], uniquingKeysWith: +)
     }
 
+    func genreTag() -> (String, [PlainTag]) {
+        guard genre.count > 0 else { return (genreFacet, [] ) }
+
+        return (genreFacet, [PlainTag(label: genre, score: 1)])
+    }
+
     func ratingTag() -> (String, [PlainTag]) {
-        guard rating > 0 else { return (reservedFacertMixxxOrg, [] )}
+        guard rating > 0 else { return (reservedFacetMixxxOrg, [] )}
 
         let score = min(1, Float64(rating) / Float64(maxRating))
-        return (reservedFacertMixxxOrg, [PlainTag(label: ratingLabel, score: score)])
+        return (reservedFacetMixxxOrg, [PlainTag(label: ratingLabel, score: score)])
     }
 }

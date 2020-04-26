@@ -56,6 +56,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The album where this media item belongs. */
     open var album: ITLibAlbum { get }
 
+✅ Mapped to `tags`
 
     /** @abstract The genre associated with this media item. May be empty. */
     open var genre: String { get }
