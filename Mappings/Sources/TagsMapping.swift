@@ -33,9 +33,10 @@ extension ITLibMediaItemProtocol {
     }
 
     func genreTag() -> (String, [PlainTag]) {
-        guard genre.count > 0 else { return (genreFacet, [] ) }
+        let trimmedGenre = genre.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmedGenre.count > 0 else { return (genreFacet, [] ) }
 
-        return (genreFacet, [PlainTag(label: genre, score: 1)])
+        return (genreFacet, [PlainTag(label: trimmedGenre, score: 1)])
     }
 
     func ratingTag() -> (String, [PlainTag]) {
