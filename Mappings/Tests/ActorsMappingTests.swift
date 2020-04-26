@@ -16,7 +16,7 @@
 import XCTest
 import ITunesModelStubs
 import AoideModel
-@testable import AoideITunesLib
+import Mappings
 
 final class ArtistMappingTests: XCTestCase {
 

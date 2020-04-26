@@ -16,33 +16,35 @@
 import XCTest
 import ITunesModelStubs
 import AoideModel
-@testable import AoideITunesLib
+import Mappings
 
-final class TitleMappingTests: XCTestCase {
+final class TagsMappingTests: XCTestCase {
 
-    func testTitleIsMapped() {
-        // Given a media item with a title and sort title
+    func testRatingIsMapped() {
+        // Given a media item with a rating
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.title = "The Meaning of Life"
-        mediaItem.sortTitle = "Meaning of Life"
+        mediaItem.rating = 3
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the title is mapped to `titles`
-        XCTAssertEqual(aoideTrack.titles, [Title.default(name: "The Meaning of Life")])
+        // Then the rating is mapped into `tags`
+        XCTAssertTrue(aoideTrack.tags[reservedFacertMixxxOrg]!.contains(where: { tag in
+            tag.label == ratingLabel && tag.score == 0.6
+        }))
     }
 
-    func testSortTitleIsMappedAsFallback() {
-        // Given a media item with no title, but a sort title defined
+    func testMissingRatingIsNotMapped() {
+        // Given a media item with a missing rating (rating = 0)
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.title = ""
-        mediaItem.sortTitle = "Meaning of Life"
+        mediaItem.rating = 0
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the sort title is mapped to `titles`
-        XCTAssertEqual(aoideTrack.titles, [Title.default(name: "Meaning of Life")])
+        // Then the rating is not mapped into `tags`
+        XCTAssertFalse(aoideTrack.tags[reservedFacertMixxxOrg]!.contains(where: { tag in
+            tag.label == ratingLabel
+        }))
     }
 }

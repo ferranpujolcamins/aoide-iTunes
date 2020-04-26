@@ -26,6 +26,11 @@ let package = Package(
             path: "AoideITunesLib/Sources"
         ),
         .target(
+            name: "Mappings",
+            dependencies: ["AoideModel", "ITunesModel"],
+            path: "Mappings/Sources"
+        ),
+        .target(
             name: "AoideModel",
             dependencies: [],
             path: "AoideModel/Sources"
@@ -41,8 +46,13 @@ let package = Package(
             path: "ITunesModelStubs/Sources"
         ),
         .testTarget(
+            name: "MappingsTests",
+            dependencies: ["Mappings", "ITunesModelStubs"],
+            path: "Mappings/Tests"
+        ),
+        .testTarget(
             name: "AoideITunesLibTests",
-            dependencies: ["AoideITunesLib", "ITunesModelStubs"],
+            dependencies: ["AoideITunesLib"],
             path: "AoideITunesLib/Tests"
         )
     ]

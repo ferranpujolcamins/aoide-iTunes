@@ -17,13 +17,13 @@ import Foundation
 import AoideModel
 import ITunesModel
 
-var reservedFacertMixxxOrg: String { "mixxx.org" }
-var ratingLabel: String { "rating" }
-var maxRating: Int { 5 }
+public var reservedFacertMixxxOrg: String { "mixxx.org" }
+public var ratingLabel: String { "rating" }
+public var maxRating: Int { 5 }
 
 extension ITLibMediaItemProtocol {
 
-    func mapToAoide() -> Track {
+    public func mapToAoide() -> Track {
         Track(
             media_sources: sources(),
             release: release(),

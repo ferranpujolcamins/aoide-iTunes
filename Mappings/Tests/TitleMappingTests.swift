@@ -16,43 +16,33 @@
 import XCTest
 import ITunesModelStubs
 import AoideModel
-@testable import AoideITunesLib
+import Mappings
 
-final class ReleaseMappingTests: XCTestCase {
+final class TitleMappingTests: XCTestCase {
 
-    func testReleaseDateIsMapped() {
-        // Given a media item with a release date
-        let date = Date()
+    func testTitleIsMapped() {
+        // Given a media item with a title and sort title
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.releaseDate = date
+        mediaItem.title = "The Meaning of Life"
+        mediaItem.sortTitle = "Meaning of Life"
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the release date is mapped to `release` (not the release year)
-        XCTAssertEqual(aoideTrack.release, Release(
-            released_at: date,
-            released_by: nil,
-            copyright: nil,
-            licenses: []
-        ))
+        // Then the title is mapped to `titles`
+        XCTAssertEqual(aoideTrack.titles, [Title.default(name: "The Meaning of Life")])
     }
 
-    func testReleaseYearIsMappedAsFallback() {
-        // Given a media item with no release date defined, but release year defined
+    func testSortTitleIsMappedAsFallback() {
+        // Given a media item with no title, but a sort title defined
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.releaseDate = nil
-        mediaItem.year = 2002
+        mediaItem.title = ""
+        mediaItem.sortTitle = "Meaning of Life"
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the release year is mapped to `release`
-        XCTAssertEqual(aoideTrack.release, Release(
-            released_at: Date(timeIntervalSinceReferenceDate: 3600*24*365),
-            released_by: nil,
-            copyright: nil,
-            licenses: []
-        ))
+        // Then the sort title is mapped to `titles`
+        XCTAssertEqual(aoideTrack.titles, [Title.default(name: "Meaning of Life")])
     }
 }

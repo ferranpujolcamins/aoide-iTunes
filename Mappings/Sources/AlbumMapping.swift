@@ -18,7 +18,7 @@ import AoideModel
 import ITunesModel
 
 extension ITLibAlbumProtocol {
-    func mapToAoide() -> Album {
+    public func mapToAoide() -> Album {
         Album(
             titles: (title ?? sortTitle)
                 .map(Title.default)

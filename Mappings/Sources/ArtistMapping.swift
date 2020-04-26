@@ -18,7 +18,7 @@ import AoideModel
 import ITunesModel
 
 extension ITLibArtistProtocol {
-    func mapToAoide() -> Actor? {
+    public func mapToAoide() -> Actor? {
         (name ?? sortName).map { Actor(name: $0, role: .artist, precedence: .default) }
     }
 }

@@ -16,35 +16,43 @@
 import XCTest
 import ITunesModelStubs
 import AoideModel
-@testable import AoideITunesLib
+import Mappings
 
-final class TagsMappingTests: XCTestCase {
+final class ReleaseMappingTests: XCTestCase {
 
-    func testRatingIsMapped() {
-        // Given a media item with a rating
+    func testReleaseDateIsMapped() {
+        // Given a media item with a release date
+        let date = Date()
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.rating = 3
+        mediaItem.releaseDate = date
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the rating is mapped into `tags`
-        XCTAssertTrue(aoideTrack.tags[reservedFacertMixxxOrg]!.contains(where: { tag in
-            tag.label == ratingLabel && tag.score == 0.6
-        }))
+        // Then the release date is mapped to `release` (not the release year)
+        XCTAssertEqual(aoideTrack.release, Release(
+            released_at: date,
+            released_by: nil,
+            copyright: nil,
+            licenses: []
+        ))
     }
 
-    func testMissingRatingIsNotMapped() {
-        // Given a media item with a missing rating (rating = 0)
+    func testReleaseYearIsMappedAsFallback() {
+        // Given a media item with no release date defined, but release year defined
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.rating = 0
+        mediaItem.releaseDate = nil
+        mediaItem.year = 2002
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the rating is not mapped into `tags`
-        XCTAssertFalse(aoideTrack.tags[reservedFacertMixxxOrg]!.contains(where: { tag in
-            tag.label == ratingLabel
-        }))
+        // Then the release year is mapped to `release`
+        XCTAssertEqual(aoideTrack.release, Release(
+            released_at: Date(timeIntervalSinceReferenceDate: 3600*24*365),
+            released_by: nil,
+            copyright: nil,
+            licenses: []
+        ))
     }
 }
