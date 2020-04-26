@@ -19,12 +19,17 @@ import ITunesModel
 
 extension ITLibAlbumProtocol {
     public func mapToAoide() -> Album {
-        Album(
-            titles: (title ?? sortTitle)
+        let trimmedTitle = title?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedSortTitle = sortTitle?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedAlbumArtist = albumArtist?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedSortAlbumArtist = sortAlbumArtist?.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return Album(
+            titles: (trimmedTitle ?? trimmedSortTitle)
                 .map(Title.default)
                 .map(Array.pure)
                 ?? [],
-            actors: (albumArtist ?? sortAlbumArtist)
+            actors: (trimmedAlbumArtist ?? trimmedSortAlbumArtist)
                 .map { Actor(name: $0, role: .artist, precedence: .default ) }
                 .map(Array.pure)
                 ?? [],
