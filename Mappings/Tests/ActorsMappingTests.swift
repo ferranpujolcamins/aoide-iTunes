@@ -25,13 +25,14 @@ final class ArtistMappingTests: XCTestCase {
         // Given a media item with an artist name defined
         var mediaItem = ITLibMediaItemStub()
         mediaItem.artist = ITLibArtistStub()
-        mediaItem.artist?.name = "The Offspring"
-        mediaItem.artist?.sortName = "Offspring"
+        mediaItem.artist?.name = "  The Offspring  "
+        mediaItem.artist?.sortName = "  Offspring "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the artist name is mapped (not the artist sort name) as artist with default precedence
+        // and leading and trailing whitespace removed
         XCTAssertEqual(
             aoideTrack.actors,
             [Actor(name: "The Offspring", role: .artist, precedence: .default)]
@@ -44,12 +45,13 @@ final class ArtistMappingTests: XCTestCase {
         var mediaItem = ITLibMediaItemStub()
         mediaItem.artist = ITLibArtistStub()
         mediaItem.artist?.name = nil
-        mediaItem.artist?.sortName = "Offspring"
+        mediaItem.artist?.sortName = "  Offspring   "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the sort name is mapped as artist with default precedence
+        // and leading and trailing whitespace removed
         XCTAssertEqual(
             aoideTrack.actors,
             [Actor(name: "Offspring", role: .artist, precedence: .default)]
@@ -67,6 +69,7 @@ final class ArtistMappingTests: XCTestCase {
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the composer is mapped (not the artist sort name) as composer with default precedence
+        // and leading and trailing whitespace removed
         XCTAssertEqual(
             aoideTrack.actors,
             [Actor(name: "Steve Reich", role: .composer, precedence: .default)]
@@ -84,6 +87,7 @@ final class ArtistMappingTests: XCTestCase {
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the sort name is mapped as artist with default precedence
+        // and leading and trailing whitespace removed
         XCTAssertEqual(
             aoideTrack.actors,
             [Actor(name: "Reich, Steve", role: .composer, precedence: .default)]
@@ -95,13 +99,14 @@ final class ArtistMappingTests: XCTestCase {
         // Given a media item with an artist and a composer defined
         var mediaItem = ITLibMediaItemStub()
         mediaItem.artist = ITLibArtistStub()
-        mediaItem.artist?.name = "Eighth Blackbird"
-        mediaItem.composer = "Steve Reich"
+        mediaItem.artist?.name = "  Eighth Blackbird    "
+        mediaItem.composer = "  Steve Reich  "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the artist and the composer are mapped to actors
+        // with leading and trailing whitespace removed
         XCTAssertEqual(
             aoideTrack.actors,
             [

@@ -51,12 +51,12 @@ final class TagsMappingTests: XCTestCase {
     func testGenreIsMapped() {
         // Given a media item with a genre
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.genre = "House"
+        mediaItem.genre = "   House   "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the genre is mapped into `tags`
+        // Then the genre is mapped into `tags` with leading and trailing whitespace removed
         XCTAssertTrue(aoideTrack.tags[genreFacet]!.contains(where: { tag in
             tag.label == "House" && tag.score == 1
         }))
@@ -82,7 +82,7 @@ final class TagsMappingTests: XCTestCase {
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
-        // Then the comments are mapped into `tags`
+        // Then the comments are mapped into `tags` with leading and trailing whitespace removed
         XCTAssertTrue(aoideTrack.tags[commentFacet]!.contains(where: { tag in
             tag.label == "Sick beat!" && tag.score == 1
         }))

@@ -24,13 +24,14 @@ final class AlbumMappingTests: XCTestCase {
 
         // Given a media item with an album title defined
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.album.title = "The Offspring"
-        mediaItem.album.sortTitle = "Offspring"
+        mediaItem.album.title = "  The Offspring  "
+        mediaItem.album.sortTitle = "  Offspring "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the album title is mapped (not the album sort title)
+        // with leading and trailing whitespace removed
         XCTAssertEqual(aoideTrack.album?.titles, [Title.default(name: "The Offspring")])
     }
 
@@ -39,12 +40,13 @@ final class AlbumMappingTests: XCTestCase {
         // Given a media item with no album title defined, but an album sort title defined
         var mediaItem = ITLibMediaItemStub()
         mediaItem.album.title = nil
-        mediaItem.album.sortTitle = "Offspring"
+        mediaItem.album.sortTitle = "  Offspring  "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the album sort title is mapped
+        // with leading and trailing whitespace removed
         XCTAssertEqual(aoideTrack.album?.titles, [Title.default(name: "Offspring")])
     }
 
@@ -52,14 +54,14 @@ final class AlbumMappingTests: XCTestCase {
 
         // Given a media item with an album artist defined
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.album.albumArtist = "The Offspring"
-        mediaItem.album.sortAlbumArtist = "Offspring"
+        mediaItem.album.albumArtist = "  The Offspring  "
+        mediaItem.album.sortAlbumArtist = "  Offspring "
 
         // When we map the album to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the album artist is mapped (not the album sort artist)
-        // as artist with default precedence
+        // as artist with default precedence and leading and trailing whitespace removed
         XCTAssertEqual(
             aoideTrack.album?.actors,
             [Actor(name: "The Offspring", role: .artist, precedence: .default)]
@@ -71,12 +73,13 @@ final class AlbumMappingTests: XCTestCase {
         // Given a media item with no album artist defined, but an album sort artist defined
         var mediaItem = ITLibMediaItemStub()
         mediaItem.album.albumArtist = nil
-        mediaItem.album.sortAlbumArtist = "Offspring"
+        mediaItem.album.sortAlbumArtist = " Offspring "
 
         // When we map the album to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the sort album artist is mapped as artist with default precedence
+        // and leading and trailing whitespace removed
         XCTAssertEqual(
             aoideTrack.album?.actors,
             [Actor(name: "Offspring", role: .artist, precedence: .default)]
