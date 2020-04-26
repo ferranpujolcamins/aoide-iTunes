@@ -73,6 +73,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The size in bytes of this media item on disk. */
     open var fileSize: UInt64 { get }
 
+❌ Not mapped
 
     /** @abstract The size in bytes of this media item on disk. (deprecated: use fileSize instead) */
     @available(*, deprecated)
@@ -87,14 +88,17 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The position of this media item within its album. */
     open var trackNumber: Int { get }
 
+❌ Not mapped
 
     /** @abstract The podcast category of this media item (implies this media item is a podcast). */
     open var category: String? { get }
 
+❌ Not mapped
 
     /** @abstract Any podcast description of with this media item (implies this media item is a podcast). */
     open var description: String? { get }
 
+❌ Not mapped
 
     /** @abstract The content rating of this media item's lyrics. */
     open var lyricsContentRating: ITLibMediaItemLyricsContentRating { get }
@@ -103,10 +107,12 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The extended content rating of this media item. */
     open var contentRating: String? { get }
 
+❌ Not mapped
 
     /** @abstract The date and time this media item was last modified. */
     open var modifiedDate: Date? { get }
 
+❌ Not mapped
 
     /** @abstract The date and media item this media item was added to the iTunes database. */
     open var addedDate: Date? { get }
@@ -119,18 +125,22 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The sample rate of this media item in samples per second. */
     open var sampleRate: Int { get }
 
+✅ Mapped to `markers`(Beat marker)
 
     /** @abstract The BPM (beats per minute) of this media item. */
     open var beatsPerMinute: Int { get }
 
+❌ Not mapped
 
     /** @abstract The number of times this media item has been played in iTunes. */
     open var playCount: Int { get }
 
+❌ Not mapped
 
     /** @abstract The date and time this media item was last played in iTunes, or nil if this media item has not been played. */
     open var lastPlayedDate: Date? { get }
 
+❌ Not mapped
 
     /** @abstract The play status for this media.  Represents partially played and unplayed states for videos and podcasts. Other media kinds always return "none". */
     open var playStatus: ITLibMediaItemPlayStatus { get } // added in 12.4
@@ -147,6 +157,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract Whether this media item has artwork. */
     open var artwork: ITLibArtwork? { get }
 
+✅ Mapped to `tags`
 
     /** @abstract Any comments associated with this media item. */
     open var comments: String? { get }
@@ -185,6 +196,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The year when this media item was released. */
     open var year: Int { get }
 
+❌ Not mapped
 
     /** @abstract The type of the file this media item refers to. */
     @available(*, deprecated)

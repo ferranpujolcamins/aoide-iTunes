@@ -62,15 +62,41 @@ final class TagsMappingTests: XCTestCase {
         }))
     }
 
-    func testemptyGenreIsNotMapped() {
+    func testEmptyGenreIsNotMapped() {
         // Given a media item with an empty genre
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.genre = ""
+        mediaItem.genre = "    "
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide()
 
         // Then the genre is not mapped into `tags`
         XCTAssertEqual(aoideTrack.tags[genreFacet]?.count, 0)
+    }
+
+    func testCommentsAreMapped() {
+        // Given a media item with comments
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.comments = "   Sick beat!         "
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
+
+        // Then the comments are mapped into `tags`
+        XCTAssertTrue(aoideTrack.tags[commentFacet]!.contains(where: { tag in
+            tag.label == "Sick beat!" && tag.score == 1
+        }))
+    }
+
+    func testEmptyCommentsAreNotMapped() {
+        // Given a media item with empty comments
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.genre = "     "
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide()
+
+        // Then the comments are not mapped into `tags`
+        XCTAssertEqual(aoideTrack.tags[commentFacet]?.count, 0)
     }
 }

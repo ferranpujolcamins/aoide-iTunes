@@ -15,6 +15,8 @@
 
 import iTunesLibrary
 
+public let maxRating = 5
+
 public protocol ITLibMediaItemProtocol {
     var addedDate: Date? { get }
     var _album: ITLibAlbumProtocol { get }

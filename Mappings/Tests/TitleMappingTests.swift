@@ -36,7 +36,7 @@ final class TitleMappingTests: XCTestCase {
     func testSortTitleIsMappedAsFallback() {
         // Given a media item with no title, but a sort title defined
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.title = ""
+        mediaItem.title = "    "
         mediaItem.sortTitle = "Meaning of Life"
 
         // When we map the media item to the aoide model

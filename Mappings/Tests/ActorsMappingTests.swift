@@ -77,7 +77,7 @@ final class ArtistMappingTests: XCTestCase {
 
         // Given a media item with no artist name defined, but an artist sort name defined
         var mediaItem = ITLibMediaItemStub()
-        mediaItem.composer = ""
+        mediaItem.composer = "    "
         mediaItem.sortComposer = "Reich, Steve"
 
         // When we map the media item to the aoide model

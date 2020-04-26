@@ -17,11 +17,6 @@ import Foundation
 import AoideModel
 import ITunesModel
 
-public let reservedFacetMixxxOrg = "mixxx.org"
-public let ratingLabel = "rating"
-public let genreFacet = "genre"
-public let maxRating = 5
-
 extension ITLibMediaItemProtocol {
 
     public func mapToAoide() -> Track {
