@@ -20,3 +20,12 @@ extension Array {
         [e]
     }
 }
+
+extension Date {
+    static func forYear(_ year: Int) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
+        return dateFormatter.date(from: "\(year)")
+    }
+}

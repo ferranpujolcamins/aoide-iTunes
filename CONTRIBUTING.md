@@ -36,6 +36,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The rating of this media item. */
     open var rating: Int { get }
 
+❌ Not mapped
 
     /** @abstract Whether this media item's rating is computed. */
     open var isRatingComputed: Bool { get }
@@ -48,6 +49,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract If non-zero, the actual time playback for this media item will stop vs. the total time (in milliseconds). */
     open var stopTime: Int { get }
 
+✅ Mapped to `album` and `indexes`
 
     /** @abstract The album where this media item belongs. */
     open var album: ITLibAlbum { get }
@@ -77,6 +79,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The length of this media item in milliseconds. */
     open var totalTime: Int { get }
 
+✅ Mapped to `indexes`
 
     /** @abstract The position of this media item within its album. */
     open var trackNumber: Int { get }
@@ -165,10 +168,12 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The video information of this media item (implies this media item is a video media item). */
     open var videoInfo: ITLibMediaItemVideoInfo? { get }
 
+✅ Mapped to `release`
 
     /** @abstract The date this media item was released. */
     open var releaseDate: Date? { get }
 
+✅ Mapped to `release` if releaseDate is nil
 
     /** @abstract The year when this media item was released. */
     open var year: Int { get }

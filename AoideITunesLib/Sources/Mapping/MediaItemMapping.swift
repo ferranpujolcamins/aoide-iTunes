@@ -46,7 +46,7 @@ extension ITLibMediaItemProtocol {
 
     func release() -> Release {
         Release(
-            released_at: releaseDate,
+            released_at: releaseDate ?? Date.forYear(year),
             released_by: nil,
             copyright: nil,
             licenses: []
