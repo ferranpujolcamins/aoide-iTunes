@@ -17,9 +17,10 @@ import Foundation
 import AoideModel
 import ITunesModel
 
-public var reservedFacertMixxxOrg: String { "mixxx.org" }
-public var ratingLabel: String { "rating" }
-public var maxRating: Int { 5 }
+public let reservedFacetMixxxOrg = "mixxx.org"
+public let ratingLabel = "rating"
+public let genreFacet = "genre"
+public let maxRating = 5
 
 extension ITLibMediaItemProtocol {
 
@@ -85,65 +86,5 @@ extension ITLibMediaItemProtocol {
             track: Index(number: UInt16(trackNumber), total: UInt16(_album.trackCount)),
             movement: Index(number: 0, total: 0)
         )
-    }
-
-    func markers() -> Markers {
-        Markers(
-            positions: positionMarkers(),
-            beats: beatMarkers(),
-            keys: .empty
-        )
-    }
-
-    func positionMarkers() -> PositionMarkers {
-        PositionMarkers(
-            state: .readOnly,
-            markers: mainMarker()
-        )
-    }
-
-    func mainMarker() -> [PositionMarker] {
-        guard startTime != 0 || stopTime != totalTime else { return [] }
-
-        return [PositionMarker(
-            start: PositionMs(startTime),
-            end: PositionMs(stopTime),
-            type: .main,
-            number: nil,
-            color: nil,
-            label: nil
-        )]
-    }
-
-    func beatMarkers() -> BeatMarkers {
-        BeatMarkers(
-            state: .readOnly,
-            markers: bpmMarker()
-        )
-    }
-
-    func bpmMarker() -> [BeatMarker] {
-        guard beatsPerMinute != 0 else { return [] }
-
-        return [BeatMarker(
-            start: 0,
-            end: nil,
-            tempo: TempoBpm(beatsPerMinute),
-            timing: nil,
-            beat_at_start: nil
-        )]
-    }
-
-    func tags() -> Tags {
-        Dictionary([
-            ratingTag()
-        ], uniquingKeysWith: +)
-    }
-
-    func ratingTag() -> (String, [PlainTag]) {
-        guard rating > 0 else { return (reservedFacertMixxxOrg, [] )}
-        
-        let score = min(1, Float64(rating) / Float64(maxRating))
-        return (reservedFacertMixxxOrg, [PlainTag(label: ratingLabel, score: score)])
     }
 }
