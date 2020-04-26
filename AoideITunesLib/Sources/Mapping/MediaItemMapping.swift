@@ -98,30 +98,40 @@ extension ITLibMediaItemProtocol {
     func positionMarkers() -> PositionMarkers {
         PositionMarkers(
             state: .readOnly,
-            markers: [
-                PositionMarker(
-                    start: PositionMs(startTime),
-                    end: PositionMs(stopTime),
-                    type: .main,
-                    number: nil,
-                    color: nil,
-                    label: nil
-                )
-            ]
+            markers: mainMarker()
         )
+    }
+
+    func mainMarker() -> [PositionMarker] {
+        guard startTime != 0 || stopTime != totalTime else { return [] }
+
+        return [PositionMarker(
+            start: PositionMs(startTime),
+            end: PositionMs(stopTime),
+            type: .main,
+            number: nil,
+            color: nil,
+            label: nil
+        )]
     }
 
     func beatMarkers() -> BeatMarkers {
         BeatMarkers(
             state: .readOnly,
-            markers: [BeatMarker(
-                start: 0,
-                end: nil,
-                tempo: TempoBpm(beatsPerMinute),
-                timing: nil,
-                beat_at_start: nil
-            )]
+            markers: bpmMarker()
         )
+    }
+
+    func bpmMarker() -> [BeatMarker] {
+        guard beatsPerMinute != 0 else { return [] }
+
+        return [BeatMarker(
+            start: 0,
+            end: nil,
+            tempo: TempoBpm(beatsPerMinute),
+            timing: nil,
+            beat_at_start: nil
+        )]
     }
 
     func tags() -> Tags {

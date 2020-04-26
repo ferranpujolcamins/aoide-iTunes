@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Markers {
+public struct Markers: Equatable {
 
     public init(positions: PositionMarkers, beats: BeatMarkers, keys: KeyMarkers) {
 
@@ -32,7 +32,7 @@ public struct Markers {
     public let keys: KeyMarkers
 }
 
-public struct PositionMarkers {
+public struct PositionMarkers: Equatable {
 
     public init(state: State, markers: [PositionMarker]) {
         self.state = state
@@ -48,7 +48,7 @@ public struct PositionMarkers {
     }
 }
 
-public struct BeatMarkers {
+public struct BeatMarkers: Equatable {
 
     public init(state: State, markers: [BeatMarker]) {
         self.state = state
@@ -58,9 +58,13 @@ public struct BeatMarkers {
     public let state: State
 
     public let markers: [BeatMarker]
+
+    public static var empty: BeatMarkers {
+        BeatMarkers(state: .readOnly, markers: [])
+    }
 }
 
-public struct KeyMarkers {
+public struct KeyMarkers: Equatable {
 
     public let state: State
 
@@ -71,7 +75,7 @@ public struct KeyMarkers {
     }
 }
 
-public struct PositionMarker {
+public struct PositionMarker: Equatable {
 
     public init(
         start: PositionMs?,
@@ -103,7 +107,7 @@ public struct PositionMarker {
     public let label: String?
 }
 
-public struct BeatMarker {
+public struct BeatMarker: Equatable {
 
     public init(
         start: PositionMs,
@@ -131,7 +135,7 @@ public struct BeatMarker {
     public let beat_at_start: BeatNumber?
 }
 
-public struct KeyMarker {
+public struct KeyMarker: Equatable {
 
     public let start: PositionMs
 
@@ -140,7 +144,7 @@ public struct KeyMarker {
     public let key: KeySignature
 }
 
-public enum State: UInt8 {
+public enum State: UInt8, Equatable {
     case readWrite = 0
     case readOnly = 1
 }
@@ -156,7 +160,7 @@ public enum PositionMarkerType: UInt8 {
     case sample = 7
 }
 
-public struct TimeSignature {
+public struct TimeSignature: Equatable {
     // number of beats in each measure unit or bar, 0 = default/undefined
     public let top: BeatNumber
 
