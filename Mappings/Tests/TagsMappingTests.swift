@@ -74,6 +74,45 @@ final class TagsMappingTests: XCTestCase {
         XCTAssertEqual(aoideTrack.tags[genreFacet]?.count, 0)
     }
 
+    func testGroupingIsMapped() {
+        // Given a media item with grouping
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.grouping = "   Acid House   "
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
+
+        // Then the grouping is mapped into `tags` as genre,
+        // with leading and trailing whitespace removed and a low score
+        XCTAssertTrue(aoideTrack.tags[genreFacet]!.contains(where: { tag in
+            tag.label == "Acid House" && tag.score == 0.5
+        }))
+    }
+
+    func testEmptyGroupingIsNotMapped() {
+        // Given a media item with an empty grouping
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.grouping = "    "
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
+
+        // Then the grouping is not mapped into `tags`
+        XCTAssertEqual(aoideTrack.tags[genreFacet]?.count, 0)
+    }
+
+    func testNilGroupingIsNotMapped() {
+        // Given a media item with an empty grouping
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.grouping = nil
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
+
+        // Then the grouping is not mapped into `tags`
+        XCTAssertEqual(aoideTrack.tags[genreFacet]?.count, 0)
+    }
+
     func testCommentsAreMapped() {
         // Given a media item with comments
         var mediaItem = ITLibMediaItemStub()

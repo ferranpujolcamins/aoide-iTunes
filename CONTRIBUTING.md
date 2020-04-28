@@ -157,10 +157,12 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The location of this media item on disk. */
     open var location: URL? { get }
 
+❌ Not mapped
 
     /** @abstract Whether this media item has artwork. */
     open var hasArtworkAvailable: Bool { get }
 
+❌ Not mapped
 
     /** @abstract Whether this media item has artwork. */
     open var artwork: ITLibArtwork? { get }
@@ -226,10 +228,12 @@ can be set to an arbitrary value to use in tests.
     /** @abstract The voice-over language of this media item */
     open var voiceOverLanguage: String? { get }
 
+❌ Not mapped
 
     /** @abstract The volume adjustment used for this media item if any. */
     open var volumeAdjustment: Int { get }
 
+❌ Not mapped
 
     /** @abstract The volume normalization energy applied to this media item. */
     open var volumeNormalizationEnergy: Int { get }
@@ -239,6 +243,7 @@ can be set to an arbitrary value to use in tests.
     /** @abstract Whether the user has disabled this media item. */
     open var isUserDisabled: Bool { get }
 
+✅ Mapped to `tags`
 
     /** @abstract The grouping of this media item. */
     open var grouping: String? { get }

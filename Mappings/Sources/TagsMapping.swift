@@ -27,6 +27,7 @@ extension ITLibMediaItemProtocol {
     func tags() -> Tags {
         Dictionary([
             genreTag(),
+            groupingTag(),
             ratingTag(),
             commentsTag()
         ], uniquingKeysWith: +)
@@ -37,6 +38,13 @@ extension ITLibMediaItemProtocol {
         guard trimmedGenre.count > 0 else { return (genreFacet, [] ) }
 
         return (genreFacet, [PlainTag(label: trimmedGenre, score: 1)])
+    }
+
+    func groupingTag() -> (String, [PlainTag]) {
+        let trimmedGrouping = (grouping ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmedGrouping.count > 0 else { return (genreFacet, [] ) }
+
+        return (genreFacet, [PlainTag(label: trimmedGrouping, score: 0.5)])
     }
 
     func ratingTag() -> (String, [PlainTag]) {
