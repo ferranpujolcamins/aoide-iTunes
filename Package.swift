@@ -9,7 +9,8 @@ let package = Package(
         .macOS(.v10_15)
     ],
     products: [
-        .executable(name: "aoideiTunes", targets: ["AoideITunes"])
+        .executable(name: "aoideITunes", targets: ["AoideITunes"]),
+        .executable(name: "iTunesLibraryExporter", targets: ["ITunesLibraryExporter"])
     ],
     dependencies: [
         .package(url: "https://github.com/nsomar/Guaka.git", from: "0.4.1")
@@ -24,6 +25,11 @@ let package = Package(
             name: "AoideITunesLib",
             dependencies: ["AoideModel", "ITunesModel"],
             path: "AoideITunesLib/Sources"
+        ),
+        .target(
+            name: "ITunesLibraryExporter",
+            dependencies: ["ITunesModelStubs"],
+            path: "ITunesLibraryExporter/Sources"
         ),
         .target(
             name: "Mappings",
