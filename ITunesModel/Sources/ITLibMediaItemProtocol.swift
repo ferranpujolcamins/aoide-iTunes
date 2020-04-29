@@ -22,6 +22,7 @@ public protocol ITLibMediaItemProtocol {
     associatedtype Album: ITLibAlbumProtocol
     associatedtype Artist: ITLibArtistProtocol
     associatedtype Artwork: ITLibArtworkProtocol
+    associatedtype MediaItemLocationType
 
     var addedDateProperty: Date? { get }
     var album: Album { get }
@@ -47,7 +48,7 @@ public protocol ITLibMediaItemProtocol {
     var kind: String? { get }
     var lastPlayedDate: Date? { get }
     var location: URL? { get }
-//    var locationType: ITLibMediaItemLocationType { get }
+    var locationType: MediaItemLocationType { get }
 //    var lyricsContentRating: ITLibMediaItemLyricsContentRating { get }
 //    var mediaKind: ITLibMediaItemMediaKind { get }
     var modifiedDate: Date? { get }

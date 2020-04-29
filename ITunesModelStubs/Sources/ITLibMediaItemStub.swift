@@ -44,7 +44,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
     public var kind: String? = nil
     public var lastPlayedDate: Date? = nil
     public var location: URL? = URL(fileURLWithPath: "")
-//    var locationType: ITLibMediaItemLocationType { get }
+    public var locationType: ITLibMediaItemLocationTypeStub = .kindUnknown
 //    var lyricsContentRating: ITLibMediaItemLyricsContentRating { get }
 //    var mediaKind: ITLibMediaItemMediaKind { get }
     public var modifiedDate: Date? = nil
