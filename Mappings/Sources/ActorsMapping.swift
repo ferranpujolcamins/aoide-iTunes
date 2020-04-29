@@ -20,7 +20,7 @@ import ITunesModel
 extension ITLibMediaItemProtocol {
     func actors() -> [Actor] {
         [
-            _artist?.mapToAoide(),
+            artist?.mapToAoide(),
             composer()
         ].compactMap { $0 }
     }

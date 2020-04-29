@@ -18,9 +18,13 @@ import iTunesLibrary
 public let maxRating = 5
 
 public protocol ITLibMediaItemProtocol {
-    var addedDate: Date? { get }
-    var _album: ITLibAlbumProtocol { get }
-    var _artist: ITLibArtistProtocol? { get }
+
+    associatedtype Album: ITLibAlbumProtocol
+    associatedtype Artist: ITLibArtistProtocol
+
+    var addedDateProperty: Date? { get }
+    var album: Album { get }
+    var artist: Artist? { get }
 //    var artwork: ITLibArtwork? { get }
     var beatsPerMinute: Int { get }
     var bitrate: Int { get }
@@ -67,12 +71,4 @@ public protocol ITLibMediaItemProtocol {
     var year: Int { get }
 }
 
-extension ITLibMediaItem: ITLibMediaItemProtocol {
-    public var _album: ITLibAlbumProtocol {
-        album
-    }
-
-    public var _artist: ITLibArtistProtocol? {
-        artist
-    }
-}
+extension ITLibMediaItem: ITLibMediaItemProtocol {}

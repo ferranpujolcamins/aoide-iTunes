@@ -23,7 +23,7 @@ extension ITLibMediaItemProtocol {
         Track(
             media_sources: sources(mimeType: mimeType),
             release: release(),
-            album: _album.mapToAoide(),
+            album: album.mapToAoide(),
             titles: titles(),
             actors: actors(),
             indexes: indexes(),
@@ -75,8 +75,8 @@ extension ITLibMediaItemProtocol {
 
     func indexes() -> Indexes {
         Indexes(
-            disc: Index(number: UInt16(_album.discNumber), total: UInt16(_album.discCount)),
-            track: Index(number: UInt16(trackNumber), total: UInt16(_album.trackCount)),
+            disc: Index(number: UInt16(album.discNumber), total: UInt16(album.discCount)),
+            track: Index(number: UInt16(trackNumber), total: UInt16(album.trackCount)),
             movement: Index(number: 0, total: 0)
         )
     }

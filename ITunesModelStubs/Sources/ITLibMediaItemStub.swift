@@ -20,7 +20,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
 
     public init() {}
     
-    public var addedDate: Date? = nil
+    public var addedDateProperty: Date? = nil
     public var album: ITLibAlbumStub = ITLibAlbumStub()
     public var artist: ITLibArtistStub? = nil
 //    var artwork: ITLibArtwork? { get }
@@ -67,8 +67,4 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
     public var volumeAdjustment: Int = 0
     public var volumeNormalizationEnergy: Int = 0
     public var year: Int = 0
-
-    public var _album: ITLibAlbumProtocol { album }
-
-    public var _artist: ITLibArtistProtocol? { artist }
 }
