@@ -17,6 +17,8 @@ import iTunesLibrary
 
 public protocol ITLibAlbumProtocol {
 
+    associatedtype PersistentID
+
     var albumArtist: String? { get }
 
     var discCount: Int { get }
@@ -29,7 +31,7 @@ public protocol ITLibAlbumProtocol {
 
     var isRatingComputed: Bool { get }
 
-    var persistentID: NSNumber { get }
+    var persistentID: PersistentID { get }
 
     var rating: Int { get }
 

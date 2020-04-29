@@ -116,6 +116,8 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
     }
 
     public init<T: ITLibMediaItemProtocol>(_ t: T) where
+        T.Album.PersistentID == NSNumber,
+        T.Artist.PersistentID == NSNumber,
         T.Artwork.ArtworkFormat == ITLibArtworkFormat,
         T.MediaItemLocationType == ITLibMediaItemLocationType,
         T.MediaItemLyricsContentRating == ITLibMediaItemLyricsContentRating,

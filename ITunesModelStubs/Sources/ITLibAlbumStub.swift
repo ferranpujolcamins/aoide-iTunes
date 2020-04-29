@@ -25,7 +25,7 @@ public struct ITLibAlbumStub: ITLibAlbumProtocol {
         isCompilation: Bool = false,
         isGapless: Bool = false,
         isRatingComputed: Bool = false,
-        persistentID: NSNumber = 0,
+        persistentID: Double = 0,
         rating: Int = 0,
         sortAlbumArtist: String? = nil,
         sortTitle: String? = nil,
@@ -46,7 +46,7 @@ public struct ITLibAlbumStub: ITLibAlbumProtocol {
         self.trackCount = trackCount
     }
 
-    public init<T: ITLibAlbumProtocol>(_ t: T) {
+    public init<T: ITLibAlbumProtocol>(_ t: T) where T.PersistentID == NSNumber {
         self.init(
             albumArtist: t.albumArtist,
             discCount: t.discCount,
@@ -54,7 +54,7 @@ public struct ITLibAlbumStub: ITLibAlbumProtocol {
             isCompilation: t.isCompilation,
             isGapless: t.isGapless,
             isRatingComputed: t.isRatingComputed,
-            persistentID: t.persistentID,
+            persistentID: t.persistentID.doubleValue,
             rating: t.rating,
             sortAlbumArtist: t.sortAlbumArtist,
             sortTitle: t.sortTitle,
@@ -75,7 +75,7 @@ public struct ITLibAlbumStub: ITLibAlbumProtocol {
 
     public var isRatingComputed: Bool
 
-    public var persistentID: NSNumber
+    public var persistentID: Double
 
     public var rating: Int
 

@@ -18,23 +18,23 @@ import ITunesModel
 
 public struct ITLibArtistStub: ITLibArtistProtocol {
 
-    public init(name: String? = nil, persistentID: NSNumber = 0, sortName: String? = nil) {
+    public init(name: String? = nil, persistentID: Double = 0, sortName: String? = nil) {
         self.name = name
         self.persistentID = persistentID
         self.sortName = sortName
     }
 
-    public init<T: ITLibArtistProtocol>(_ t: T) {
+    public init<T: ITLibArtistProtocol>(_ t: T) where T.PersistentID == NSNumber {
         self.init(
             name: t.name,
-            persistentID: t.persistentID,
+            persistentID: t.persistentID.doubleValue,
             sortName: t.sortName
         )
     }
 
     public var name: String?
 
-    public var persistentID: NSNumber
+    public var persistentID: Double
 
     public var sortName: String?
 }

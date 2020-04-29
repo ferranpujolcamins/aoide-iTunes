@@ -17,9 +17,11 @@ import iTunesLibrary
 
 public protocol ITLibArtistProtocol {
 
+    associatedtype PersistentID
+
     var name: String? { get }
 
-    var persistentID: NSNumber { get }
+    var persistentID: PersistentID { get }
 
     var sortName: String? { get }
 }
