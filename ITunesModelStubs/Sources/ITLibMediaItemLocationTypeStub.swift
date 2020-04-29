@@ -17,39 +17,11 @@ import Foundation
 
 public enum ITLibMediaItemLocationTypeStub : UInt {
 
-    case kindUnknown = 1
+    case unknown = 0
 
-    case kindSong = 2
+    case file = 1
 
-    case kindMovie = 3
+    case URL = 2
 
-    case kindPodcast = 4
-
-    case kindAudiobook = 5
-
-    case kindPDFBooklet = 6
-
-    case kindMusicVideo = 7
-
-    case kindTVShow = 8
-
-    case kindInteractiveBooklet = 9
-
-    case kindHomeVideo = 12
-
-    case kindRingtone = 14
-
-    case kindDigitalBooklet = 15
-
-    case kindIOSApplication = 16
-
-    case kindVoiceMemo = 17
-
-    case kindiTunesU = 18
-
-    case kindBook = 19
-
-    case kindPDFBook = 20
-
-    case kindAlertTone = 21
+    case remote = 3
 }
