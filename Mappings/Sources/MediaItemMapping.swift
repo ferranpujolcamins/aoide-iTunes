@@ -75,9 +75,15 @@ extension ITLibMediaItemProtocol {
 
     func indexes() -> Indexes {
         Indexes(
-            disc: Index(number: UInt16(album.discNumber), total: UInt16(album.discCount)),
-            track: Index(number: UInt16(trackNumber), total: UInt16(album.trackCount)),
-            movement: Index(number: 0, total: 0)
+            disc: validate(
+                Index(number: UInt16(album.discNumber), total: UInt16(album.discCount)),
+                { $0.number > 0 || $0.total > 0}
+            ),
+            track: validate(
+                Index(number: UInt16(trackNumber), total: UInt16(album.trackCount)),
+                { $0.number > 0 || $0.total > 0}
+            ),
+            movement: nil
         )
     }
 }

@@ -106,7 +106,7 @@ final class IndexesMappingTests: XCTestCase {
         // Given a media item with a track number and a track count
         var mediaItem = ITLibMediaItemStub()
         mediaItem.trackNumber = 1
-        mediaItem.album.trackCount = 1
+        mediaItem.album.trackCount = 2
 
         // When we map the media item to the aoide model
         let aoideTrack = mediaItem.mapToAoide(mimeType: "")
@@ -138,6 +138,6 @@ final class IndexesMappingTests: XCTestCase {
         let aoideTrack = mediaItem.mapToAoide(mimeType: "")
 
         // Then the movement number and count are not mapped to indexes
-        XCTAssertEqual(aoideTrack.indexes.movement, Index(number: 0, total: 0))
+        XCTAssertNil(aoideTrack.indexes.movement)
     }
 }

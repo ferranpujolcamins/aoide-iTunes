@@ -29,7 +29,7 @@ public struct Index: Equatable {
 
 public struct Indexes: Equatable {
 
-    public init(disc: Index, track: Index, movement: Index) {
+    public init(disc: Index?, track: Index?, movement: Index?) {
         self.disc = disc
         self.track = track
         self.movement = movement
