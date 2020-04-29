@@ -14,8 +14,18 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
+import iTunesLibrary
 
 public enum ITLibMediaItemLyricsContentRatingStub: UInt {
+
+    public init(_ t: ITLibMediaItemLyricsContentRating) {
+        switch t {
+        case .none: self = .none
+        case .explicit: self = .explicit
+        case .clean: self = .clean
+        @unknown default: self = .none
+        }
+    }
 
     case none = 0
 

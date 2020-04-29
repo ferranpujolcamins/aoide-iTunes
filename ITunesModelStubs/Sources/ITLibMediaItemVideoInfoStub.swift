@@ -18,19 +18,52 @@ import ITunesModel
 
 public struct ITLibMediaItemVideoInfoStub: ITLibMediaItemVideoInfoProtocol {
 
-    public var series: String? = nil
+    public init(
+        series: String? = nil,
+        sortSeries: String? = nil,
+        season: Int = 0,
+        episode: String? = nil,
+        episodeOrder: Int = 0,
+        isHD: Bool = false,
+        videoWidth: Int = 0,
+        videoHeight: Int = 0
+    ) {
+        self.series = series
+        self.sortSeries = sortSeries
+        self.season = season
+        self.episode = episode
+        self.episodeOrder = episodeOrder
+        self.isHD = isHD
+        self.videoWidth = videoWidth
+        self.videoHeight = videoHeight
+    }
 
-    public var sortSeries: String? = nil
+    public init<T: ITLibMediaItemVideoInfoProtocol>(_ t: T) {
+        self.init(
+            series: t.series,
+            sortSeries: t.sortSeries,
+            season: t.season,
+            episode: t.episode,
+            episodeOrder: t.episodeOrder,
+            isHD: t.isHD,
+            videoWidth: t.videoWidth,
+            videoHeight: t.videoHeight
+        )
+    }
 
-    public var season: Int = 0
+    public var series: String?
 
-    public var episode: String? = nil
+    public var sortSeries: String?
 
-    public var episodeOrder: Int = 0
+    public var season: Int
 
-    public var isHD: Bool = false
+    public var episode: String?
 
-    public var videoWidth: Int = 0
+    public var episodeOrder: Int
 
-    public var videoHeight: Int = 0
+    public var isHD: Bool
+
+    public var videoWidth: Int
+
+    public var videoHeight: Int
 }

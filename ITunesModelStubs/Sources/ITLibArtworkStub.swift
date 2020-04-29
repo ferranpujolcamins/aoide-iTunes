@@ -14,9 +14,24 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import AppKit
+import iTunesLibrary
 import ITunesModel
 
 public struct ITLibArtworkStub: ITLibArtworkProtocol {
+
+    public init(image: NSImage? = nil, imageData: Data? = nil, imageDataFormat: ITLibArtworkFormatStub = .none) {
+        self.image = image
+        self.imageData = imageData
+        self.imageDataFormat = imageDataFormat
+    }
+
+    public init<T: ITLibArtworkProtocol>(_ t: T) where T.ArtworkFormat == ITLibArtworkFormat {
+        self.init(
+            image: t.image,
+            imageData: t.imageData,
+            imageDataFormat: ITLibArtworkFormatStub(t.imageDataFormat)
+        )
+    }
 
     public var image: NSImage? = nil
 
@@ -26,6 +41,21 @@ public struct ITLibArtworkStub: ITLibArtworkProtocol {
 }
 
 public enum ITLibArtworkFormatStub : UInt {
+
+    public init(_ t: ITLibArtworkFormat) {
+        switch t {
+        case .none: self = .none
+        case .bitmap: self = .bitmap
+        case .JPEG: self = .JPEG
+        case .JPEG2000: self = .JPEG2000
+        case .GIF: self = .GIF
+        case .PNG: self = .PNG
+        case .BMP: self = .BMP
+        case .TIFF: self = .TIFF
+        case .PICT: self = .PICT
+        @unknown default: self = .none
+        }
+    }
 
     case none = 0
 

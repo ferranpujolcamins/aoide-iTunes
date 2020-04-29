@@ -13,9 +13,18 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import Foundation
+import iTunesLibrary
 
 public enum ITLibMediaItemPlayStatusStub: UInt {
+
+    public init(_ t: ITLibMediaItemPlayStatus) {
+        switch t {
+        case .none: self = .none
+        case .partiallyPlayed: self = .partiallyPlayed
+        case .unplayed: self = .unplayed
+        @unknown default: self = .none
+        }
+    }
 
     case none = 0
 

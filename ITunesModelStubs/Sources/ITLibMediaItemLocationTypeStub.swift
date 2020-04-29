@@ -13,9 +13,19 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import Foundation
+import iTunesLibrary
 
 public enum ITLibMediaItemLocationTypeStub : UInt {
+
+    public init(_ t: ITLibMediaItemLocationType) {
+        switch t {
+        case .unknown: self = .unknown
+        case .file: self = .file
+        case .URL: self = .URL
+        case .remote: self = .remote
+        @unknown default: self = .unknown
+        }
+    }
 
     case unknown = 0
 

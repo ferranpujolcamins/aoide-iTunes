@@ -13,9 +13,33 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import Foundation
+import iTunesLibrary
 
 public enum ITLibMediaItemMediaKindStub: UInt {
+
+    public init(_ t: ITLibMediaItemMediaKind) {
+        switch t {
+        case .kindUnknown: self = .kindUnknown
+        case .kindSong: self = .kindSong
+        case .kindMovie: self = .kindMovie
+        case .kindPodcast: self = .kindPodcast
+        case .kindAudiobook: self = .kindAudiobook
+        case .kindPDFBooklet: self = .kindPDFBooklet
+        case .kindMusicVideo: self = .kindMusicVideo
+        case .kindTVShow: self = .kindTVShow
+        case .kindInteractiveBooklet: self = .kindInteractiveBooklet
+        case .kindHomeVideo: self = .kindHomeVideo
+        case .kindRingtone: self = .kindRingtone
+        case .kindDigitalBooklet: self = .kindDigitalBooklet
+        case .kindIOSApplication: self = .kindIOSApplication
+        case .kindVoiceMemo: self = .kindVoiceMemo
+        case .kindiTunesU: self = .kindiTunesU
+        case .kindBook: self = .kindBook
+        case .kindPDFBook: self = .kindPDFBook
+        case .kindAlertTone: self = .kindAlertTone
+        @unknown default: self = .kindUnknown
+        }
+    }
 
     case kindUnknown = 1
 
