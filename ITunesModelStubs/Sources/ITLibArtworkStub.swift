@@ -40,7 +40,7 @@ public struct ITLibArtworkStub: ITLibArtworkProtocol {
     public var imageDataFormat: ITLibArtworkFormatStub
 }
 
-public enum ITLibArtworkFormatStub: UInt, Codable {
+public enum ITLibArtworkFormatStub: String, Codable {
 
     public init(_ t: ITLibArtworkFormat) {
         switch t {
@@ -57,23 +57,23 @@ public enum ITLibArtworkFormatStub: UInt, Codable {
         }
     }
 
-    case none = 0
+    case none
 
-    case bitmap = 1
+    case bitmap
 
-    case JPEG = 2
+    case JPEG
 
-    case JPEG2000 = 3
+    case JPEG2000
 
-    case GIF = 4
+    case GIF
 
-    case PNG = 5
+    case PNG
 
-    case BMP = 6
+    case BMP
 
-    case TIFF = 7
+    case TIFF
 
-    case PICT = 8
+    case PICT
 }
 
 extension ITLibArtworkStub: Codable {

@@ -15,7 +15,7 @@
 
 import iTunesLibrary
 
-public enum ITLibMediaItemMediaKindStub: UInt, Codable {
+public enum ITLibMediaItemMediaKindStub: String, Codable {
 
     public init(_ t: ITLibMediaItemMediaKind) {
         switch t {
@@ -41,39 +41,39 @@ public enum ITLibMediaItemMediaKindStub: UInt, Codable {
         }
     }
 
-    case kindUnknown = 1
+    case kindUnknown
 
-    case kindSong = 2
+    case kindSong
 
-    case kindMovie = 3
+    case kindMovie
     
-    case kindPodcast = 4
+    case kindPodcast
 
-    case kindAudiobook = 5
+    case kindAudiobook
 
-    case kindPDFBooklet = 6
+    case kindPDFBooklet
 
-    case kindMusicVideo = 7
+    case kindMusicVideo
 
-    case kindTVShow = 8
+    case kindTVShow
 
-    case kindInteractiveBooklet = 9
+    case kindInteractiveBooklet
 
-    case kindHomeVideo = 12
+    case kindHomeVideo
 
-    case kindRingtone = 14
+    case kindRingtone
 
-    case kindDigitalBooklet = 15
+    case kindDigitalBooklet
 
-    case kindIOSApplication = 16
+    case kindIOSApplication
 
-    case kindVoiceMemo = 17
+    case kindVoiceMemo
 
-    case kindiTunesU = 18
+    case kindiTunesU
 
-    case kindBook = 19
+    case kindBook
 
-    case kindPDFBook = 20
+    case kindPDFBook
 
-    case kindAlertTone = 21
+    case kindAlertTone
 }

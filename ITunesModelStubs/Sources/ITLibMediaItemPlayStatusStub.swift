@@ -15,7 +15,7 @@
 
 import iTunesLibrary
 
-public enum ITLibMediaItemPlayStatusStub: UInt, Codable {
+public enum ITLibMediaItemPlayStatusStub: String, Codable {
 
     public init(_ t: ITLibMediaItemPlayStatus) {
         switch t {
@@ -26,9 +26,9 @@ public enum ITLibMediaItemPlayStatusStub: UInt, Codable {
         }
     }
 
-    case none = 0
+    case none
 
-    case partiallyPlayed = 1
+    case partiallyPlayed
 
-    case unplayed = 2
+    case unplayed
 }

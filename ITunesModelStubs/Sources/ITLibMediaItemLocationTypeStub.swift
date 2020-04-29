@@ -15,7 +15,7 @@
 
 import iTunesLibrary
 
-public enum ITLibMediaItemLocationTypeStub: UInt, Codable {
+public enum ITLibMediaItemLocationTypeStub: String, Codable {
 
     public init(_ t: ITLibMediaItemLocationType) {
         switch t {
@@ -27,11 +27,11 @@ public enum ITLibMediaItemLocationTypeStub: UInt, Codable {
         }
     }
 
-    case unknown = 0
+    case unknown
 
-    case file = 1
+    case file
 
-    case URL = 2
+    case URL
 
-    case remote = 3
+    case remote
 }

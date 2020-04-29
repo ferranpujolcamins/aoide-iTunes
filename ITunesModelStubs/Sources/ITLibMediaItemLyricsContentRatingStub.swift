@@ -16,7 +16,7 @@
 import Foundation
 import iTunesLibrary
 
-public enum ITLibMediaItemLyricsContentRatingStub: UInt, Codable {
+public enum ITLibMediaItemLyricsContentRatingStub: String, Codable {
 
     public init(_ t: ITLibMediaItemLyricsContentRating) {
         switch t {
@@ -27,9 +27,9 @@ public enum ITLibMediaItemLyricsContentRatingStub: UInt, Codable {
         }
     }
 
-    case none = 0
+    case none
 
-    case explicit = 1
+    case explicit
 
-    case clean = 2
+    case clean
 }
