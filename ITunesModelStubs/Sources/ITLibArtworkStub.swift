@@ -97,7 +97,8 @@ extension ITLibArtworkStub: Codable {
             let data = image.tiffRepresentation
             try container.encodeIfPresent(data, forKey: .imageData)
             try container.encode(ITLibArtworkFormatStub.TIFF, forKey: .imageDataFormat)
+        } else {
+            throw ITunesModelStubsError.errorEncodingArtwork
         }
-        throw ITunesModelStubsError.errorEncodingArtwork
     }
 }
