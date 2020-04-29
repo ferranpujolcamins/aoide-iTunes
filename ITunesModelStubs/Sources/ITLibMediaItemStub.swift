@@ -62,7 +62,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
     public var title: String = ""
     public var totalTime: Int = 0
     public var trackNumber: Int = 0
-//    var videoInfo: ITLibMediaItemVideoInfo? { get }
+    public var videoInfo: ITLibMediaItemVideoInfoStub? = nil
     public var voiceOverLanguage: String? = nil
     public var volumeAdjustment: Int = 0
     public var volumeNormalizationEnergy: Int = 0

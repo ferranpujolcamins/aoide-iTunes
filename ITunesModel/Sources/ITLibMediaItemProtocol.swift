@@ -26,6 +26,7 @@ public protocol ITLibMediaItemProtocol {
     associatedtype MediaItemLyricsContentRating
     associatedtype MediaItemMediaKind
     associatedtype MediaItemPlayStatus
+    associatedtype MediaItemVideoInfo: ITLibMediaItemVideoInfoProtocol
 
     var addedDateProperty: Date? { get }
     var album: Album { get }
@@ -69,7 +70,7 @@ public protocol ITLibMediaItemProtocol {
     var title: String { get }
     var totalTime: Int { get }
     var trackNumber: Int { get }
-//    var videoInfo: ITLibMediaItemVideoInfo? { get }
+    var videoInfo: MediaItemVideoInfo? { get }
     var voiceOverLanguage: String? { get }
     var volumeAdjustment: Int { get }
     var volumeNormalizationEnergy: Int { get }
