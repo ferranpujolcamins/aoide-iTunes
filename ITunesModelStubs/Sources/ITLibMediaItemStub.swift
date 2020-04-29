@@ -23,7 +23,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
     public var addedDateProperty: Date? = nil
     public var album: ITLibAlbumStub = ITLibAlbumStub()
     public var artist: ITLibArtistStub? = nil
-//    var artwork: ITLibArtwork? { get }
+    public var artwork: ITLibArtworkStub? = nil
     public var beatsPerMinute: Int = 0
     public var bitrate: Int = 0
     public var category: String? = nil

@@ -21,11 +21,12 @@ public protocol ITLibMediaItemProtocol {
 
     associatedtype Album: ITLibAlbumProtocol
     associatedtype Artist: ITLibArtistProtocol
+    associatedtype Artwork: ITLibArtworkProtocol
 
     var addedDateProperty: Date? { get }
     var album: Album { get }
     var artist: Artist? { get }
-//    var artwork: ITLibArtwork? { get }
+    var artwork: Artwork? { get }
     var beatsPerMinute: Int { get }
     var bitrate: Int { get }
     var category: String? { get }
