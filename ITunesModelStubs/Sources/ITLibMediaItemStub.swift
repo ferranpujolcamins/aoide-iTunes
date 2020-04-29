@@ -16,7 +16,7 @@
 import iTunesLibrary
 import ITunesModel
 
-public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
+public struct ITLibMediaItemStub: ITLibMediaItemProtocol, Codable {
     public init(
         addedDateProperty: Date? = nil,
         album: ITLibAlbumStub = ITLibAlbumStub(),

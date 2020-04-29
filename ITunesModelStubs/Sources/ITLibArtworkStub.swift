@@ -33,14 +33,14 @@ public struct ITLibArtworkStub: ITLibArtworkProtocol {
         )
     }
 
-    public var image: NSImage? = nil
+    public var image: NSImage?
 
-    public var imageData: Data? = nil
+    public var imageData: Data?
 
-    public var imageDataFormat: ITLibArtworkFormatStub = .none
+    public var imageDataFormat: ITLibArtworkFormatStub
 }
 
-public enum ITLibArtworkFormatStub : UInt {
+public enum ITLibArtworkFormatStub: UInt, Codable {
 
     public init(_ t: ITLibArtworkFormat) {
         switch t {
@@ -74,4 +74,30 @@ public enum ITLibArtworkFormatStub : UInt {
     case TIFF = 7
 
     case PICT = 8
+}
+
+extension ITLibArtworkStub: Codable {
+    enum CodingKeys: String, CodingKey {
+        case imageData
+        case imageDataFormat
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.imageData = try container.decode(Data.self, forKey: .imageData)
+        self.imageDataFormat = try container.decode(ITLibArtworkFormatStub.self, forKey: .imageDataFormat)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        if let imageData = imageData {
+            try container.encodeIfPresent(imageData, forKey: .imageData)
+            try container.encode(imageDataFormat, forKey: .imageDataFormat)
+        } else if let image = image {
+            let data = image.tiffRepresentation
+            try container.encodeIfPresent(data, forKey: .imageData)
+            try container.encode(ITLibArtworkFormatStub.TIFF, forKey: .imageDataFormat)
+        }
+        throw ITunesModelStubsError.errorEncodingArtwork
+    }
 }

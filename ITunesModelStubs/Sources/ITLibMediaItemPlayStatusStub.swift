@@ -15,7 +15,7 @@
 
 import iTunesLibrary
 
-public enum ITLibMediaItemPlayStatusStub: UInt {
+public enum ITLibMediaItemPlayStatusStub: UInt, Codable {
 
     public init(_ t: ITLibMediaItemPlayStatus) {
         switch t {

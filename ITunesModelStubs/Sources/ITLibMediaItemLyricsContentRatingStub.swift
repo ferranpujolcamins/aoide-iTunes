@@ -16,7 +16,7 @@
 import Foundation
 import iTunesLibrary
 
-public enum ITLibMediaItemLyricsContentRatingStub: UInt {
+public enum ITLibMediaItemLyricsContentRatingStub: UInt, Codable {
 
     public init(_ t: ITLibMediaItemLyricsContentRating) {
         switch t {

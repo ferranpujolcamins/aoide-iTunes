@@ -15,7 +15,7 @@
 
 import iTunesLibrary
 
-public enum ITLibMediaItemMediaKindStub: UInt {
+public enum ITLibMediaItemMediaKindStub: UInt, Codable {
 
     public init(_ t: ITLibMediaItemMediaKind) {
         switch t {

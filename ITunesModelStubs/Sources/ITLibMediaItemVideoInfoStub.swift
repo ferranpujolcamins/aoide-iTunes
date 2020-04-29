@@ -16,7 +16,7 @@
 import Foundation
 import ITunesModel
 
-public struct ITLibMediaItemVideoInfoStub: ITLibMediaItemVideoInfoProtocol {
+public struct ITLibMediaItemVideoInfoStub: ITLibMediaItemVideoInfoProtocol, Codable {
 
     public init(
         series: String? = nil,

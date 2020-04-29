@@ -13,25 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import iTunesLibrary
+import Foundation
 
-public enum ITLibMediaItemLocationTypeStub: UInt, Codable {
-
-    public init(_ t: ITLibMediaItemLocationType) {
-        switch t {
-        case .unknown: self = .unknown
-        case .file: self = .file
-        case .URL: self = .URL
-        case .remote: self = .remote
-        @unknown default: self = .unknown
-        }
-    }
-
-    case unknown = 0
-
-    case file = 1
-
-    case URL = 2
-
-    case remote = 3
+public enum ITunesModelStubsError: Error {
+    case errorEncodingArtwork
 }

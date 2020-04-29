@@ -16,7 +16,7 @@
 import Foundation
 import ITunesModel
 
-public struct ITLibArtistStub: ITLibArtistProtocol {
+public struct ITLibArtistStub: ITLibArtistProtocol, Codable {
 
     public init(name: String? = nil, persistentID: Double = 0, sortName: String? = nil) {
         self.name = name

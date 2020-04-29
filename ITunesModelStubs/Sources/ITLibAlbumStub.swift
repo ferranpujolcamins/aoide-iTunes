@@ -16,7 +16,7 @@
 import Foundation
 import ITunesModel
 
-public struct ITLibAlbumStub: ITLibAlbumProtocol {
+public struct ITLibAlbumStub: ITLibAlbumProtocol, Codable {
 
     public init(
         albumArtist: String? = nil,
