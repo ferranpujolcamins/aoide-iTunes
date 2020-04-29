@@ -25,6 +25,7 @@ public protocol ITLibMediaItemProtocol {
     associatedtype MediaItemLocationType
     associatedtype MediaItemLyricsContentRating
     associatedtype MediaItemMediaKind
+    associatedtype MediaItemPlayStatus
 
     var addedDateProperty: Date? { get }
     var album: Album { get }
@@ -55,7 +56,7 @@ public protocol ITLibMediaItemProtocol {
     var mediaKind: MediaItemMediaKind { get }
     var modifiedDate: Date? { get }
     var playCount: Int { get }
-//    var playStatus: ITLibMediaItemPlayStatus { get }
+    var playStatus: MediaItemPlayStatus { get }
     var rating: Int { get }
     var releaseDate: Date? { get }
     var sampleRate: Int { get }

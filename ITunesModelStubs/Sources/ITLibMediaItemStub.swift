@@ -49,7 +49,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol {
     public var mediaKind: ITLibMediaItemMediaKindStub = .kindUnknown
     public var modifiedDate: Date? = nil
     public var playCount: Int = 0
-//    var playStatus: ITLibMediaItemPlayStatus { get }
+    public var playStatus: ITLibMediaItemPlayStatusStub = .none
     public var rating: Int = 0
     public var releaseDate: Date? = nil
     public var sampleRate: Int = 0
