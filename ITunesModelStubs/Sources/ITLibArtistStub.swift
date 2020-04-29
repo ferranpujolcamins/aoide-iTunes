@@ -18,7 +18,7 @@ import ITunesModel
 
 public struct ITLibArtistStub: ITLibArtistProtocol, Codable {
 
-    public init(name: String? = nil, persistentID: Double = 0, sortName: String? = nil) {
+    public init(name: String? = nil, persistentID: UInt64 = 0, sortName: String? = nil) {
         self.name = name
         self.persistentID = persistentID
         self.sortName = sortName
@@ -27,14 +27,14 @@ public struct ITLibArtistStub: ITLibArtistProtocol, Codable {
     public init<T: ITLibArtistProtocol>(_ t: T) where T.PersistentID == NSNumber {
         self.init(
             name: t.name,
-            persistentID: t.persistentID.doubleValue,
+            persistentID: t.persistentID.uint64Value,
             sortName: t.sortName
         )
     }
 
     public var name: String?
 
-    public var persistentID: Double
+    public var persistentID: UInt64
 
     public var sortName: String?
 }

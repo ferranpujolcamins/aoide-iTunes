@@ -25,7 +25,7 @@ public struct ITLibAlbumStub: ITLibAlbumProtocol, Codable {
         isCompilation: Bool = false,
         isGapless: Bool = false,
         isRatingComputed: Bool = false,
-        persistentID: Double = 0,
+        persistentID: UInt64 = 0,
         rating: Int = 0,
         sortAlbumArtist: String? = nil,
         sortTitle: String? = nil,
@@ -54,7 +54,7 @@ public struct ITLibAlbumStub: ITLibAlbumProtocol, Codable {
             isCompilation: t.isCompilation,
             isGapless: t.isGapless,
             isRatingComputed: t.isRatingComputed,
-            persistentID: t.persistentID.doubleValue,
+            persistentID: t.persistentID.uint64Value,
             rating: t.rating,
             sortAlbumArtist: t.sortAlbumArtist,
             sortTitle: t.sortTitle,
@@ -75,7 +75,7 @@ public struct ITLibAlbumStub: ITLibAlbumProtocol, Codable {
 
     public var isRatingComputed: Bool
 
-    public var persistentID: Double
+    public var persistentID: UInt64
 
     public var rating: Int
 
