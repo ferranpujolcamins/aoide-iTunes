@@ -17,7 +17,15 @@ import iTunesLibrary
 import ITunesModelStubs
 
 let library = try ITLibrary(apiVersion: "1.0")
-let stubs = library.allMediaItems.map(ITLibMediaItemStub.init)
+let stubs: [ITLibMediaItemStub] = library.allMediaItems
+    .map(ITLibMediaItemStub.init)
+    // We don't want to print the artwork data
+    // TODO: avoid element copies and double iteration on the list
+    .map { stub in
+        var stub = stub
+        stub.artwork = nil
+        return stub
+    }
 
 let encoder = JSONEncoder()
 encoder.outputFormatting = .prettyPrinted
