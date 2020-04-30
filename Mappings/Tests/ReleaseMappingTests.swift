@@ -31,8 +31,8 @@ final class ReleaseMappingTests: XCTestCase {
 
         // Then the release date is mapped to `release` (not the release year)
         XCTAssertEqual(aoideTrack.release, Release(
-            released_at: date,
-            released_by: nil,
+            releasedAt: .dateTime(date),
+            releasedBy: nil,
             copyright: nil,
             licenses: []
         ))
@@ -49,8 +49,26 @@ final class ReleaseMappingTests: XCTestCase {
 
         // Then the release year is mapped to `release`
         XCTAssertEqual(aoideTrack.release, Release(
-            released_at: Date(timeIntervalSinceReferenceDate: 3600*24*365),
-            released_by: nil,
+            releasedAt: .date(.fromYear(2002)),
+            releasedBy: nil,
+            copyright: nil,
+            licenses: []
+        ))
+    }
+
+    func testReleaseDateAndYearAreNotMapped() {
+        // Given a media item with no release date and no release year defined
+        var mediaItem = ITLibMediaItemStub()
+        mediaItem.releaseDate = nil
+        mediaItem.year = 0
+
+        // When we map the media item to the aoide model
+        let aoideTrack = mediaItem.mapToAoide(mimeType: "")
+
+        // Then nor the release date or year are mapped to `release`
+        XCTAssertEqual(aoideTrack.release, Release(
+            releasedAt: nil,
+            releasedBy: nil,
             copyright: nil,
             licenses: []
         ))

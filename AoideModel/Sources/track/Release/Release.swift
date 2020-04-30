@@ -18,23 +18,28 @@ import Foundation
 public struct Release: Equatable {
 
     public init(
-        released_at: Date?,
-        released_by: String?,
+        releasedAt: ReleasedAt?,
+        releasedBy: String?,
         copyright: String?,
         licenses: [String]
     ) {
-        self.released_at = released_at
-        self.released_by = released_by
+        self.releasedAt = releasedAt
+        self.releasedBy = releasedBy
         self.copyright = copyright
         self.licenses = licenses
     }
 
 
-    public let released_at: Date?
+    public let releasedAt: ReleasedAt?
 
-    public let released_by: String? // record label
+    public let releasedBy: String? // record label
 
     public let copyright: String?
     
     public let licenses: [String]
+}
+
+public enum ReleasedAt: Equatable {
+    case date(ReleaseDate)
+    case dateTime(Date)
 }

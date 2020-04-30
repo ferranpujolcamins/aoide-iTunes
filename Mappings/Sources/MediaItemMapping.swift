@@ -42,8 +42,11 @@ extension ITLibMediaItemProtocol {
 
     func release() -> Release {
         Release(
-            released_at: releaseDate ?? Date.forYear(year),
-            released_by: nil,
+            releasedAt: releaseDate.map(ReleasedAt.dateTime)
+                ?? validate(year, { $0 != 0 })
+                    .flatMap(ReleaseYear.init(exactly:))
+                    .map { ReleasedAt.date(.fromYear($0)) },
+            releasedBy: nil,
             copyright: nil,
             licenses: []
         )
