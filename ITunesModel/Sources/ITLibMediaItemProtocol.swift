@@ -28,7 +28,7 @@ public protocol ITLibMediaItemProtocol {
     associatedtype MediaItemPlayStatus
     associatedtype MediaItemVideoInfo: ITLibMediaItemVideoInfoProtocol
 
-    var addedDateProperty: Date? { get }
+    var addedDate: Date? { get }
     var album: Album { get }
     var artist: Artist? { get }
     var artwork: Artwork? { get }

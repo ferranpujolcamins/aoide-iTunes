@@ -18,7 +18,7 @@ import ITunesModel
 
 public struct ITLibMediaItemStub: ITLibMediaItemProtocol, Codable {
     public init(
-        addedDateProperty: Date? = nil,
+        addedDate: Date? = nil,
         album: ITLibAlbumStub = ITLibAlbumStub(),
         artist: ITLibArtistStub? = nil,
         artwork: ITLibArtworkStub? = nil,
@@ -66,7 +66,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol, Codable {
         volumeNormalizationEnergy: Int = 0,
         year: Int = 0
     ) {
-        self.addedDateProperty = addedDateProperty
+        self.addedDate = addedDate
         self.album = album
         self.artist = artist
         self.artwork = artwork
@@ -125,7 +125,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol, Codable {
         T.MediaItemPlayStatus == ITLibMediaItemPlayStatus
     {
         self.init(
-            addedDateProperty: t.addedDateProperty,
+            addedDate: t.addedDate,
             album: ITLibAlbumStub(t.album),
             artist: t.artist.map(ITLibArtistStub.init),
             artwork: t.artwork.map(ITLibArtworkStub.init),
@@ -175,7 +175,7 @@ public struct ITLibMediaItemStub: ITLibMediaItemProtocol, Codable {
         )
     }
 
-    public var addedDateProperty: Date?
+    public var addedDate: Date?
     public var album: ITLibAlbumStub
     public var artist: ITLibArtistStub?
     public var artwork: ITLibArtworkStub?
