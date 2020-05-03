@@ -20,7 +20,7 @@ public protocol ITLibraryProtocol {
 
     var allMediaItems: [MediaItem] { get }
 
-    var allPlaylists: [ITLibPlaylist] { get }
+//    var allPlaylists: [ITLibPlaylist] { get }
 }
 
 extension ITLibrary: ITLibraryProtocol {}

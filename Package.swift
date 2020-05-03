@@ -41,7 +41,11 @@ let package = Package(
         ),
         .target(
             name: "AoideClient",
-            dependencies: ["AoideModel"],
+            dependencies: [
+                "AoideModel",
+                "Bow",
+                .product(name: "BowEffects", package: "Bow")
+            ],
             path: "AoideClient"
         ),
         .target(
@@ -68,6 +72,18 @@ let package = Package(
             name: "MappingsTests",
             dependencies: ["Mappings", "ITunesModelStubs"],
             path: "MappingTests"
+        ),
+        .testTarget(
+            name: "IntegrationTests",
+            dependencies: [
+                "AoideITunesLib",
+                "AoideClient",
+                "AoideModel",
+                "ITunesModelStubs",
+                "Bow",
+                .product(name: "BowEffects", package: "Bow")
+            ],
+            path: "IntegrationTests"
         )
     ]
 )

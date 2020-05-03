@@ -14,6 +14,8 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import iTunesLibrary
+import Bow
+import BowEffects
 import ITunesModel
 import Mappings
 import AoideClient
@@ -35,7 +37,7 @@ public class Main<ITunesLibrary: ITLibraryProtocol> {
     let itunesLibrary: ITunesLibrary
     let aoideClient: AoideAPI
 
-    public func run() {
+    public func run() -> IO<Error, Void> {
         let tracks = itunesLibrary.allMediaItems
             .filter { mediaItem -> Bool in
                 !mediaItem.isUserDisabled
@@ -44,6 +46,6 @@ public class Main<ITunesLibrary: ITLibraryProtocol> {
             }
             .map { $0.mapToAoide(mimeType: "") }
 
-        aoideClient.tracks.replace(tracks)
+        return aoideClient.tracks.replace(tracks)
     }
 }

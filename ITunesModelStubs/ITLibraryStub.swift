@@ -13,6 +13,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import AoideITunesLib
+import Foundation
+import ITunesModel
 
-try! buildMain().run().unsafeRunSync()
+public struct ITLibraryStub: ITLibraryProtocol {
+
+    public init(allMediaItems: [ITLibMediaItemStub]) {
+        self.allMediaItems = allMediaItems
+    }
+
+    public var allMediaItems: [ITLibMediaItemStub]
+}
