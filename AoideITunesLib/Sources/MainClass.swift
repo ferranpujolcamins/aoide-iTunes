@@ -13,17 +13,24 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import Foundation
 import iTunesLibrary
+import ITunesModel
+import Mappings
 
-struct Library {
-    private let library: ITLibrary
+public func buildMain() -> Main<ITLibrary> {
+    Main<ITLibrary>(itunesLibrary: try! ITLibrary(apiVersion: "1.0"))
+}
 
-    init?() {
-        do {
-            library = try ITLibrary(apiVersion: "1.0")
-        } catch {
-            return nil
-        }
+public class Main<ITunesLibrary: ITLibraryProtocol> {
+
+    internal init(itunesLibrary: ITunesLibrary) {
+        self.itunesLibrary = itunesLibrary
+    }
+
+    let itunesLibrary: ITunesLibrary
+
+    public func run() {
+        let tracks = itunesLibrary.allMediaItems
+            .map { $0.mapToAoide(mimeType: "") }
     }
 }

@@ -23,7 +23,7 @@ let package = Package(
         ),
         .target(
             name: "AoideITunesLib",
-            dependencies: ["AoideModel", "ITunesModel"],
+            dependencies: ["AoideModel", "ITunesModel", "Mappings"],
             path: "AoideITunesLib/Sources"
         ),
         .target(
