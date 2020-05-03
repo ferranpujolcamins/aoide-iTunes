@@ -32,6 +32,11 @@ let package = Package(
             path: "ITunesLibraryExporter/Sources"
         ),
         .target(
+            name: "AoideClient",
+            dependencies: [],
+            path: "AoideClient/Sources"
+        ),
+        .target(
             name: "Mappings",
             dependencies: ["AoideModel", "ITunesModel"],
             path: "Mappings/Sources"
