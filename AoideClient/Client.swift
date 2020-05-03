@@ -14,8 +14,9 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import Combine
 import AoideModel
+import Bow
+import BowEffects
 
 public class AoideClient: AoideAPI {
 
@@ -37,8 +38,14 @@ public class TracksClient: TracksAPI {
 
     let baseUrl: String
 
+    var tracksUrl: String { baseUrl }
+    public func tracks() -> IO<Error, [Track]> {
+        URLSession.shared.dataTaskIO(with: URL(string: tracksUrl)!)
+            .flatMap { $0.data.decode([Track].self) }^
+    }
+
     var replaceUrl: String { "\(baseUrl)/replace" }
-    public func replace(_ tracks: [Track]) {
+    public func replace(_ tracks: [Track]) -> IO<Error, Void> {
         let tracksWithURI = tracks.filter { $0.media_sources.first?.uri != "" }
 
         let uploadData = try! JSONEncoder().encode(tracksWithURI)
@@ -47,16 +54,7 @@ public class TracksClient: TracksAPI {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
-
-        }
-    }
-
-    var tracksUrl: String { baseUrl }
-    public func tracks() -> AnyPublisher<[Track], Error> {
-        URLSession.shared.dataTaskPublisher(for: URL(string: tracksUrl)!)
-            .map { $0.data }
-            .decode(type: [Track].self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
+        return URLSession.shared.uploadTaskIO(with: request, from: uploadData)
+            .map { _ in () }^
     }
 }

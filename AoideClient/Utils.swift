@@ -14,15 +14,17 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import AoideModel
 import Bow
 import BowEffects
 
-public protocol AoideAPI {
-    var tracks: TracksAPI { get }
+extension IO where A == Data, E == Error {
+    func decode<T: Decodable>(_ t: T.Type) -> IO<Error, T> {
+        flatMap { $0.decode(T.self) }^
+    }
 }
 
-public protocol TracksAPI {
-    func tracks() -> IO<Error, [Track]>
-    func replace(_ tracks: [Track]) -> IO<Error, Void>
+extension Data {
+    func decode<T: Decodable>(_ t: T.Type) -> IO<Error, T> {
+        IO<Error, T>.invoke { try JSONDecoder().decode(T.self, from: self) }
+    }
 }

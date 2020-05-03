@@ -14,6 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/nsomar/Guaka.git", from: "0.4.1"),
+        .package(name: "Bow", url: "https://github.com/bow-swift/bow.git", from: "0.8.0")
     ],
     targets: [
         .target(
@@ -23,7 +24,14 @@ let package = Package(
         ),
         .target(
             name: "AoideITunesLib",
-            dependencies: ["AoideModel", "ITunesModel", "Mappings", "AoideClient"],
+            dependencies: [
+                "AoideModel",
+                "ITunesModel",
+                "Mappings",
+                "AoideClient",
+                "Bow",
+                .product(name: "BowEffects", package: "Bow")
+            ],
             path: "AoideITunesLib"
         ),
         .target(
