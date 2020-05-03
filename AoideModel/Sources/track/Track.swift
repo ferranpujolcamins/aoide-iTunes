@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Track {
+public struct Track: Equatable, Codable {
     public init(
         media_sources: [Source],
         release: Release?,

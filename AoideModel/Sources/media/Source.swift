@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Source: Equatable {
+public struct Source: Equatable, Codable {
 
     public init(uri: String, content_type: String, content: Content) {
         
@@ -38,5 +38,24 @@ public struct Source: Equatable {
 }
 
 public enum Content: Equatable {
+
     case audio(AudioContent)
+}
+
+extension Content: Codable {
+    enum CodingKeys: CodingKey {
+        case audio
+    }
+
+    public init(from decoder: Decoder) throws {
+        let audioContent = try AudioContent(from: decoder)
+        self = .audio(audioContent)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        switch self {
+        case .audio(let audioContent):
+            try audioContent.encode(to: encoder)
+        }
+    }
 }

@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Release: Equatable {
+public struct Release: Equatable, Codable {
 
     public init(
         releasedAt: ReleasedAt?,
@@ -42,4 +42,23 @@ public struct Release: Equatable {
 public enum ReleasedAt: Equatable {
     case date(ReleaseDate)
     case dateTime(Date)
+}
+
+extension ReleasedAt: Codable {
+
+    public init(from decoder: Decoder) throws {
+        self = try first(
+            { return try ReleasedAt.date(ReleaseDate(from: decoder)) },
+            { return try ReleasedAt.dateTime(decoder.singleValueContainer().decode(Date.self)) }
+        ).orThrow(NSError())
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        switch self {
+        case .date(let releaseDate):
+            try releaseDate.encode(to: encoder)
+        case .dateTime(let date):
+            try date.encode(to: encoder)
+        }
+    }
 }

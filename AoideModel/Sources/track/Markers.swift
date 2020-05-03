@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Markers: Equatable {
+public struct Markers: Equatable, Codable {
 
     public init(positions: PositionMarkers, beats: BeatMarkers, keys: KeyMarkers) {
 
@@ -32,7 +32,7 @@ public struct Markers: Equatable {
     public let keys: KeyMarkers
 }
 
-public struct PositionMarkers: Equatable {
+public struct PositionMarkers: Equatable, Codable {
 
     public init(state: State, markers: [PositionMarker]) {
         self.state = state
@@ -48,7 +48,7 @@ public struct PositionMarkers: Equatable {
     }
 }
 
-public struct BeatMarkers: Equatable {
+public struct BeatMarkers: Equatable, Codable {
 
     public init(state: State, markers: [BeatMarker]) {
         self.state = state
@@ -64,7 +64,7 @@ public struct BeatMarkers: Equatable {
     }
 }
 
-public struct KeyMarkers: Equatable {
+public struct KeyMarkers: Equatable, Codable {
 
     public let state: State
 
@@ -75,7 +75,7 @@ public struct KeyMarkers: Equatable {
     }
 }
 
-public struct PositionMarker: Equatable {
+public struct PositionMarker: Equatable, Codable {
 
     public init(
         start: PositionMs?,
@@ -107,7 +107,7 @@ public struct PositionMarker: Equatable {
     public let label: String?
 }
 
-public struct BeatMarker: Equatable {
+public struct BeatMarker: Equatable, Codable {
 
     public init(
         start: PositionMs,
@@ -135,7 +135,7 @@ public struct BeatMarker: Equatable {
     public let beat_at_start: BeatNumber?
 }
 
-public struct KeyMarker: Equatable {
+public struct KeyMarker: Equatable, Codable {
 
     public let start: PositionMs
 
@@ -144,23 +144,23 @@ public struct KeyMarker: Equatable {
     public let key: KeySignature
 }
 
-public enum State: UInt8, Equatable {
-    case readWrite = 0
-    case readOnly = 1
+public enum State: String, Equatable, Codable {
+    case readWrite
+    case readOnly
 }
 
-public enum PositionMarkerType: UInt8 {
-    case custom = 0
-    case load = 1
-    case main = 2
-    case intro = 3
-    case outro = 4
-    case jump = 5
-    case loop = 6
-    case sample = 7
+public enum PositionMarkerType: String, Equatable, Codable {
+    case custom
+    case load
+    case main
+    case intro
+    case outro
+    case jump
+    case loop
+    case sample
 }
 
-public struct TimeSignature: Equatable {
+public struct TimeSignature: Equatable, Codable {
     // number of beats in each measure unit or bar, 0 = default/undefined
     public let top: BeatNumber
 

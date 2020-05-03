@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Album {
+public struct Album: Equatable, Codable {
 
     public init(titles: [Title], actors: [Actor], compilation: Bool?) {
         self.titles = titles

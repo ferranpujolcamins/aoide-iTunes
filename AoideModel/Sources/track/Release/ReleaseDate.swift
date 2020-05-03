@@ -30,7 +30,7 @@ public let releaseYearMax: ReleaseYear = 9999
 public typealias YYYYMMDD = Int32
 
 // 8-digit year+month+day (YYYYMMDD)
-public struct ReleaseDate: Equatable {
+public struct ReleaseDate: Equatable, Codable {
 
     public init(_ yyyymmdd: YYYYMMDD) {
         self.yyyymmdd = yyyymmdd

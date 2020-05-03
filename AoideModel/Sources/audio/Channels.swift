@@ -20,8 +20,35 @@ public enum Channels: Equatable {
     case layout(ChannelLayout)
 }
 
-public enum ChannelLayout: Equatable {
+public enum ChannelLayout: String, Equatable, Codable {
     case mono
     case dualMono
     case stereo
+}
+
+extension Channels: Codable {
+
+    public init(from decoder: Decoder) throws {
+        self = try first(
+            { return try Channels.count(decoder.singleValueContainer().decode(UInt16.self)) },
+            { return try Channels.layout(ChannelLayout(from: decoder)) }
+        ).orThrow(NSError())
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        switch self {
+        case .count(let count):
+            try count.encode(to: encoder)
+        case .layout(let layout):
+            try layout.encode(to: encoder)
+        }
+    }
+}
+
+extension ChannelLayout {
+    enum CodingKeys: CodingKey {
+        case mono
+        case dualMono
+        case stereo
+    }
 }

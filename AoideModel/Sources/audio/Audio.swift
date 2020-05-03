@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct AudioContent: Equatable {
+public struct AudioContent: Equatable, Codable {
     
     public init(
         channels: Channels,
@@ -50,7 +50,7 @@ public struct AudioContent: Equatable {
 public typealias PositionMs = Float64
 public typealias DurationMs = Float64
 
-public struct AudioEncoder: Equatable {
+public struct AudioEncoder: Equatable, Codable {
     public let name: String
 
     public let settings: String?

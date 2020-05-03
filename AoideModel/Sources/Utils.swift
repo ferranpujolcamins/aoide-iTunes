@@ -15,27 +15,30 @@
 
 import Foundation
 
-public struct Title: Equatable, Codable {
-
-    public let name: String
-    
-    public let level: TitleLevel
-
-    public static func `default`(name: String) -> Title {
-        Title(name: name, level: .default)
+/// Returns the result of the first closure that does not throw.
+/// If all closures throw, returns nil.
+func first<T>(_ cases: [() throws -> T]) -> T? {
+    for f in cases {
+        if let value = try? f() {
+            return value
+        }
     }
+    return nil
 }
 
-public enum TitleLevel: String, Equatable, Codable {
+/// Returns the result of the first closure that does not throw.
+/// If all closures throw, returns nil.
+func first<T>(_ cases: () throws -> T...) -> T? {
+    first(cases)
+}
 
-    case main
-
-    case sub
-
-    // for classical music, only used for tracks not albums
-    case work
-
-    case movement
-
-    public static var `default`: TitleLevel { .main }
+extension Optional {
+    /// Returns the value wrapped in the optional if it's present.
+    /// If the optional is nil, throws the given error.
+    func orThrow<E: Error>(_ error: E) throws -> Wrapped {
+        if let value = self {
+            return value
+        }
+        throw error
+    }
 }

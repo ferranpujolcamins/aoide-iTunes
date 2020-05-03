@@ -21,15 +21,6 @@ extension Array {
     }
 }
 
-extension Date {
-    static func forYear(_ year: Int) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy"
-        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
-        return dateFormatter.date(from: "\(year)")
-    }
-}
-
 extension Optional {
     /// Return the first value that is not nil
     static func first(_ optionals: [Optional]) -> Optional {
@@ -46,16 +37,14 @@ func validate<Wrapped>(_ optional: Wrapped?, _ condition: (Wrapped) -> Bool) -> 
     optional.flatMap { value in
         if condition(value) {
             return value
-        } else {
-            return nil
         }
+        return nil
     }
 }
 
 func validate<Wrapped>(_ value: Wrapped, _ condition: (Wrapped) -> Bool) -> Wrapped? {
     if condition(value) {
         return value
-    } else {
-        return nil
     }
+    return nil
 }

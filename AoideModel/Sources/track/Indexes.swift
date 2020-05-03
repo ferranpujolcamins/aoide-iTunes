@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Index: Equatable {
+public struct Index: Equatable, Codable {
 
     public init(number: UInt16, total: UInt16) {
         self.number = number
@@ -27,7 +27,7 @@ public struct Index: Equatable {
     public let total: UInt16
 }
 
-public struct Indexes: Equatable {
+public struct Indexes: Equatable, Codable {
 
     public init(disc: Index?, track: Index?, movement: Index?) {
         self.disc = disc

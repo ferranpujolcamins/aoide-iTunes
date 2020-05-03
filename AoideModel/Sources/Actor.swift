@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Actor: Equatable {
+public struct Actor: Equatable, Codable {
 
     public init(name: String, role: ActorRole, precedence: ActorPrecedence) {
         self.name = name
@@ -30,7 +30,7 @@ public struct Actor: Equatable {
     public let precedence: ActorPrecedence
 }
 
-public enum ActorRole {
+public enum ActorRole: String, Equatable, Codable {
     case artist
     case arranger
     case composer
@@ -48,7 +48,7 @@ public enum ActorRole {
     public static var `default`: ActorRole { .artist }
 }
 
-public enum ActorPrecedence {
+public enum ActorPrecedence: String, Equatable, Codable {
     case summary
     case primary
     case secondary
