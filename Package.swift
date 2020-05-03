@@ -19,52 +19,47 @@ let package = Package(
         .target(
             name: "AoideITunes",
             dependencies: ["AoideITunesLib", "Guaka"],
-            path: "AoideITunes/Sources"
+            path: "AoideITunes"
         ),
         .target(
             name: "AoideITunesLib",
             dependencies: ["AoideModel", "ITunesModel", "Mappings"],
-            path: "AoideITunesLib/Sources"
+            path: "AoideITunesLib"
         ),
         .target(
             name: "ITunesLibraryExporter",
             dependencies: ["ITunesModelStubs"],
-            path: "ITunesLibraryExporter/Sources"
+            path: "ITunesLibraryExporter"
         ),
         .target(
             name: "AoideClient",
             dependencies: [],
-            path: "AoideClient/Sources"
+            path: "AoideClient"
         ),
         .target(
             name: "Mappings",
             dependencies: ["AoideModel", "ITunesModel"],
-            path: "Mappings/Sources"
+            path: "Mappings"
         ),
         .target(
             name: "AoideModel",
             dependencies: [],
-            path: "AoideModel/Sources"
+            path: "AoideModel"
         ),
         .target(
             name: "ITunesModel",
             dependencies: [],
-            path: "ITunesModel/Sources"
+            path: "ITunesModel"
         ),
         .target(
             name: "ITunesModelStubs",
             dependencies: ["ITunesModel"],
-            path: "ITunesModelStubs/Sources"
+            path: "ITunesModelStubs"
         ),
         .testTarget(
             name: "MappingsTests",
             dependencies: ["Mappings", "ITunesModelStubs"],
-            path: "Mappings/Tests"
-        ),
-        .testTarget(
-            name: "AoideITunesLibTests",
-            dependencies: ["AoideITunesLib"],
-            path: "AoideITunesLib/Tests"
+            path: "MappingTests"
         )
     ]
 )
