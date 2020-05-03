@@ -14,3 +14,12 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
+import AoideModel
+
+public protocol AoideAPI {
+    var tracks: TracksAPI { get }
+}
+
+public protocol TracksAPI {
+    func replace(_ tracks: [Track])
+}

@@ -16,18 +16,24 @@
 import iTunesLibrary
 import ITunesModel
 import Mappings
+import AoideClient
 
 public func buildMain() -> Main<ITLibrary> {
-    Main<ITLibrary>(itunesLibrary: try! ITLibrary(apiVersion: "1.0"))
+    Main<ITLibrary>(
+        itunesLibrary: try! ITLibrary(apiVersion: "1.0"),
+        aoideClient: AoideClient(baseUrl: "http://localhost:8080")
+    )
 }
 
 public class Main<ITunesLibrary: ITLibraryProtocol> {
 
-    internal init(itunesLibrary: ITunesLibrary) {
+    internal init(itunesLibrary: ITunesLibrary, aoideClient: AoideAPI) {
         self.itunesLibrary = itunesLibrary
+        self.aoideClient = aoideClient
     }
 
     let itunesLibrary: ITunesLibrary
+    let aoideClient: AoideAPI
 
     public func run() {
         let tracks = itunesLibrary.allMediaItems
@@ -37,5 +43,7 @@ public class Main<ITunesLibrary: ITLibraryProtocol> {
                     && mediaItem.mediaKind == .kindSong()
             }
             .map { $0.mapToAoide(mimeType: "") }
+
+        aoideClient.tracks.replace(tracks)
     }
 }

@@ -13,7 +13,7 @@ let package = Package(
         .executable(name: "iTunesLibraryExporter", targets: ["ITunesLibraryExporter"])
     ],
     dependencies: [
-        .package(url: "https://github.com/nsomar/Guaka.git", from: "0.4.1")
+        .package(url: "https://github.com/nsomar/Guaka.git", from: "0.4.1"),
     ],
     targets: [
         .target(
@@ -23,7 +23,7 @@ let package = Package(
         ),
         .target(
             name: "AoideITunesLib",
-            dependencies: ["AoideModel", "ITunesModel", "Mappings"],
+            dependencies: ["AoideModel", "ITunesModel", "Mappings", "AoideClient"],
             path: "AoideITunesLib"
         ),
         .target(
@@ -33,7 +33,7 @@ let package = Package(
         ),
         .target(
             name: "AoideClient",
-            dependencies: [],
+            dependencies: ["AoideModel"],
             path: "AoideClient"
         ),
         .target(
