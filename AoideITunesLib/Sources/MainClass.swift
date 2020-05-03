@@ -31,6 +31,11 @@ public class Main<ITunesLibrary: ITLibraryProtocol> {
 
     public func run() {
         let tracks = itunesLibrary.allMediaItems
+            .filter { mediaItem -> Bool in
+                !mediaItem.isUserDisabled
+                    && !mediaItem.isVideo
+                    && mediaItem.mediaKind == .kindSong()
+            }
             .map { $0.mapToAoide(mimeType: "") }
     }
 }

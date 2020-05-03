@@ -14,44 +14,29 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import iTunesLibrary
-import ITunesModel
 
-public enum ITLibMediaItemLocationTypeStub: String, Codable {
-
-    public init(_ t: ITLibMediaItemLocationType) {
-        switch t {
-        case .unknown: self = .unknown
-        case .file: self = .file
-        case .URL: self = .URL
-        case .remote: self = .remote
-        @unknown default: self = .unknown
-        }
-    }
-
-    case unknown
-
-    case file
-
-    case URL
-
-    case remote
+public protocol ITLibMediaItemLocationTypeProtocol: Equatable {
+    static func unknown() -> Self
+    static func file() -> Self
+    static func URL() -> Self
+    static func remote() -> Self
 }
 
-extension ITLibMediaItemLocationTypeStub: ITLibMediaItemLocationTypeProtocol {
-    
-    public static func unknown() -> ITLibMediaItemLocationTypeStub {
+extension ITLibMediaItemLocationType: ITLibMediaItemLocationTypeProtocol {
+    public static func unknown() -> ITLibMediaItemLocationType {
         .unknown
     }
 
-    public static func file() -> ITLibMediaItemLocationTypeStub {
+    public static func file() -> ITLibMediaItemLocationType {
         .file
     }
 
-    public static func URL() -> ITLibMediaItemLocationTypeStub {
+    public static func URL() -> ITLibMediaItemLocationType {
         .URL
     }
 
-    public static func remote() -> ITLibMediaItemLocationTypeStub {
+    public static func remote() -> ITLibMediaItemLocationType {
         .remote
     }
+
 }

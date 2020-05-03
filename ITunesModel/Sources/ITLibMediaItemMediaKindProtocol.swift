@@ -14,72 +14,29 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import iTunesLibrary
-import ITunesModel
 
-public enum ITLibMediaItemMediaKindStub: String, Codable {
-
-    public init(_ t: ITLibMediaItemMediaKind) {
-        switch t {
-        case .kindUnknown: self = .kindUnknown
-        case .kindSong: self = .kindSong
-        case .kindMovie: self = .kindMovie
-        case .kindPodcast: self = .kindPodcast
-        case .kindAudiobook: self = .kindAudiobook
-        case .kindPDFBooklet: self = .kindPDFBooklet
-        case .kindMusicVideo: self = .kindMusicVideo
-        case .kindTVShow: self = .kindTVShow
-        case .kindInteractiveBooklet: self = .kindInteractiveBooklet
-        case .kindHomeVideo: self = .kindHomeVideo
-        case .kindRingtone: self = .kindRingtone
-        case .kindDigitalBooklet: self = .kindDigitalBooklet
-        case .kindIOSApplication: self = .kindIOSApplication
-        case .kindVoiceMemo: self = .kindVoiceMemo
-        case .kindiTunesU: self = .kindiTunesU
-        case .kindBook: self = .kindBook
-        case .kindPDFBook: self = .kindPDFBook
-        case .kindAlertTone: self = .kindAlertTone
-        @unknown default: self = .kindUnknown
-        }
-    }
-
-    case kindUnknown
-
-    case kindSong
-
-    case kindMovie
-    
-    case kindPodcast
-
-    case kindAudiobook
-
-    case kindPDFBooklet
-
-    case kindMusicVideo
-
-    case kindTVShow
-
-    case kindInteractiveBooklet
-
-    case kindHomeVideo
-
-    case kindRingtone
-
-    case kindDigitalBooklet
-
-    case kindIOSApplication
-
-    case kindVoiceMemo
-
-    case kindiTunesU
-
-    case kindBook
-
-    case kindPDFBook
-
-    case kindAlertTone
+public protocol ITLibMediaItemMediaKindProtocol: Equatable {
+    static func kindUnknown() -> Self
+    static func kindSong() -> Self
+    static func kindMovie() -> Self
+    static func kindPodcast() -> Self
+    static func kindAudiobook() -> Self
+    static func kindPDFBooklet() -> Self
+    static func kindMusicVideo() -> Self
+    static func kindTVShow() -> Self
+    static func kindInteractiveBooklet() -> Self
+    static func kindHomeVideo() -> Self
+    static func kindRingtone() -> Self
+    static func kindDigitalBooklet() -> Self
+    static func kindIOSApplication() -> Self
+    static func kindVoiceMemo() -> Self
+    static func kindiTunesU() -> Self
+    static func kindBook() -> Self
+    static func kindPDFBook() -> Self
+    static func kindAlertTone() -> Self
 }
 
-extension ITLibMediaItemMediaKindStub: ITLibMediaItemMediaKindProtocol {
+extension ITLibMediaItemMediaKind: ITLibMediaItemMediaKindProtocol {
     public static func kindUnknown() -> Self { .kindUnknown }
     public static func kindSong() -> Self { .kindSong }
     public static func kindMovie() -> Self { .kindMovie }

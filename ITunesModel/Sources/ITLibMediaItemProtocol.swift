@@ -22,9 +22,9 @@ public protocol ITLibMediaItemProtocol {
     associatedtype Album: ITLibAlbumProtocol
     associatedtype Artist: ITLibArtistProtocol
     associatedtype Artwork: ITLibArtworkProtocol
-    associatedtype MediaItemLocationType
+    associatedtype MediaItemLocationType: ITLibMediaItemLocationTypeProtocol
     associatedtype MediaItemLyricsContentRating
-    associatedtype MediaItemMediaKind
+    associatedtype MediaItemMediaKind: ITLibMediaItemMediaKindProtocol
     associatedtype MediaItemPlayStatus
     associatedtype MediaItemVideoInfo: ITLibMediaItemVideoInfoProtocol
 
