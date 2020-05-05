@@ -37,7 +37,7 @@ public class Main<ITunesLibrary: ITLibraryProtocol> {
     let itunesLibrary: ITunesLibrary
     let aoideClient: AoideAPI
 
-    public func run() -> IO<Error, Void> {
+    public func run() -> IOWriter<Void> {
         let tracks = itunesLibrary.allMediaItems
             .filter { mediaItem -> Bool in
                 !mediaItem.isUserDisabled

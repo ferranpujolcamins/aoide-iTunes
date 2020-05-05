@@ -18,11 +18,13 @@ import AoideModel
 import Bow
 import BowEffects
 
+public typealias IOWriter<T> = WriterT<IOPartial<Error>, [LogMessage], T>
+
 public protocol AoideAPI {
     var tracks: TracksAPI { get }
 }
 
 public protocol TracksAPI {
-    func tracks() -> IO<Error, [Track]>
-    func replace(_ tracks: [Track]) -> IO<Error, Void>
+    func tracks() -> IOWriter<[Track]>
+    func replace(_ tracks: [Track]) -> IOWriter<Void>
 }

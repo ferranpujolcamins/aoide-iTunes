@@ -39,6 +39,7 @@ final class IntegrationTests: XCTestCase {
         mediaItemStub.title = "Title"
         mediaItemStub.artist = ITLibArtistStub(name: "Artist", persistentID: 0, sortName: "")
         mediaItemStub.composer = "Composer"
+        mediaItemStub.mediaKind = .kindSong
 
         let iTunesLibraryStub = ITLibraryStub(allMediaItems: [
             mediaItemStub
@@ -101,8 +102,11 @@ final class IntegrationTests: XCTestCase {
 
         let testSucceeded = try main.run()
             .flatMap { [baseUrl] in AoideClient(baseUrl: baseUrl).tracks.tracks() }
-            .map { $0 == tracksOracle }^.unsafeRunSync()
+            .map { $0 == tracksOracle }^
+            .runT^
+            .unsafeRunSync()
 
-        XCTAssertTrue(testSucceeded)
+        testSucceeded.0.forEach { print($0) }
+        XCTAssertTrue(testSucceeded.1)
     }
 }

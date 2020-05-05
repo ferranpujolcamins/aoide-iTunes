@@ -13,9 +13,21 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import AoideITunesLib
-import Bow
-import BowEffects
+import Foundation
 
-try! buildMain().run().runT^.unsafeRunSync()
-    .0.forEach { print($0) }
+public enum LogMessage: CustomStringConvertible {
+    case requestSuccesful(method: String, url: String)
+    case successfullyParsed(method: String, url: String)
+    case requestBody(String)
+
+    public var description: String {
+        switch self {
+        case .requestSuccesful(method: let method, url: let url):
+            return "\(method) request to \(url) successful"
+        case .successfullyParsed(method: let method, url: let url):
+            return "response to \(method) request to \(url) successfully parsed"
+        case .requestBody(let body):
+            return body
+        }
+    }
+}

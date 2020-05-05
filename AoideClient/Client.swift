@@ -39,22 +39,35 @@ public class TracksClient: TracksAPI {
     let baseUrl: String
 
     var tracksUrl: String { baseUrl }
-    public func tracks() -> IO<Error, [Track]> {
-        URLSession.shared.dataTaskIO(with: URL(string: tracksUrl)!)
-            .flatMap { $0.data.decode([Track].self) }^
+    public func tracks() -> IOWriter<[Track]> {
+        let response = IOWriter<(response: URLResponse, data: Data)>.var()
+        let parsedResponse = IOWriter<[Track]>.var()
+
+        return binding(
+            response <- IOWriter.liftF(URLSession.shared.dataTaskIO(with: URL(string: self.tracksUrl)!)),
+            |<-IOWriter.tell([.requestSuccesful(method: "GET", url: self.tracksUrl)]),
+            parsedResponse <- IOWriter.liftF(response.get.data.decode([Track].self)),
+            |<-IOWriter.tell([.successfullyParsed(method: "GET", url: self.tracksUrl)]),
+            yield: parsedResponse.get
+        )^
     }
 
     var replaceUrl: String { "\(baseUrl)/replace" }
-    public func replace(_ tracks: [Track]) -> IO<Error, Void> {
+    public func replace(_ tracks: [Track]) -> IOWriter<Void> {
         let tracksWithURI = tracks.filter { $0.media_sources.first?.uri != "" }
 
         let uploadData = try! JSONEncoder().encode(tracksWithURI)
+        let uploadDataJson = String(data: uploadData, encoding: .utf8) ?? ""
 
         var request = URLRequest(url: URL(string: replaceUrl)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        return URLSession.shared.uploadTaskIO(with: request, from: uploadData)
-            .map { _ in () }^
+        return binding(
+            |<-IOWriter.tell([.requestBody(uploadDataJson)]),
+            |<-IOWriter.liftF(URLSession.shared.uploadTaskIO(with: request, from: uploadData)),
+            |<-IOWriter.tell([.requestSuccesful(method: "POST", url: self.replaceUrl)]),
+            yield: ()
+        )^
     }
 }
