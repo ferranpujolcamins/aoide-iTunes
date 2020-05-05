@@ -54,9 +54,13 @@ public class TracksClient: TracksAPI {
 
     var replaceUrl: String { "\(baseUrl)/replace" }
     public func replace(_ tracks: [Track]) -> IOWriter<Void> {
-        let tracksWithURI = tracks.filter { $0.media_sources.first?.uri != "" }
 
-        let uploadData = try! JSONEncoder().encode(tracksWithURI)
+        let dto = ReplaceTracksDTO(
+            mode: .updateOrCreate,
+            replacements: tracks.compactMap(Replacement.init)
+        )
+
+        let uploadData = try! JSONEncoder().encode(dto)
         let uploadDataJson = String(data: uploadData, encoding: .utf8) ?? ""
 
         var request = URLRequest(url: URL(string: replaceUrl)!)
@@ -69,5 +73,26 @@ public class TracksClient: TracksAPI {
             |<-IOWriter.tell([.requestSuccesful(method: "POST", url: self.replaceUrl)]),
             yield: ()
         )^
+    }
+
+    private struct ReplaceTracksDTO: Codable {
+        let mode: Mode
+        let replacements: [Replacement]
+    }
+
+    private struct Replacement: Codable {
+        let mediaUri: String
+        let track: Track
+
+        init?(_ track: Track) {
+            guard let uri = track.rel.first?.uri else { return nil }
+            self.mediaUri = uri
+            self.track = track
+        }
+    }
+
+    private enum Mode: String, Codable {
+        case updateOnly = "update-only"
+        case updateOrCreate = "update-or-create"
     }
 }
