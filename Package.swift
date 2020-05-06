@@ -26,6 +26,7 @@ let package = Package(
             name: "AoideITunesLib",
             dependencies: [
                 "AoideModel",
+                "AoideModelDTO",
                 "ITunesModel",
                 "Mappings",
                 "AoideClient",
@@ -43,10 +44,16 @@ let package = Package(
             name: "AoideClient",
             dependencies: [
                 "AoideModel",
+                "AoideModelDTO",
                 "Bow",
                 .product(name: "BowEffects", package: "Bow")
             ],
             path: "AoideClient"
+        ),
+        .target(
+            name: "AoideModelDTO",
+            dependencies: ["AoideModel"],
+            path: "AoideModelDTO"
         ),
         .target(
             name: "Mappings",

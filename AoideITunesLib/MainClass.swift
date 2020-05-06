@@ -19,6 +19,7 @@ import BowEffects
 import ITunesModel
 import Mappings
 import AoideClient
+import AoideModelDTO
 
 public func buildMain() -> Main<ITLibrary> {
     Main<ITLibrary>(
@@ -44,7 +45,7 @@ public class Main<ITunesLibrary: ITLibraryProtocol> {
                     && !mediaItem.isVideo
                     && mediaItem.mediaKind == .kindSong()
             }
-            .map { $0.mapToAoide(mimeType: "") }
+            .map { $0.mapToAoide(mimeType: "").dto() }
 
         return aoideClient.tracks.replace(tracks)
     }

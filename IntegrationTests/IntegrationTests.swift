@@ -102,6 +102,7 @@ final class IntegrationTests: XCTestCase {
 
         let testSucceeded = try main.run()
             .flatMap { [baseUrl] in AoideClient(baseUrl: baseUrl).tracks.tracks() }
+            .map { dtoList in dtoList.map { $0.model() } }
             .map { $0 == tracksOracle }^
             .runT^
             .unsafeRunSync()

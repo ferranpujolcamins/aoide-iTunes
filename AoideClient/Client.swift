@@ -14,7 +14,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import AoideModel
+import AoideModelDTO
 import Bow
 import BowEffects
 
@@ -39,28 +39,30 @@ public class TracksClient: TracksAPI {
     let baseUrl: String
 
     var tracksUrl: String { baseUrl }
-    public func tracks() -> IOWriter<[Track]> {
+    public func tracks() -> IOWriter<[TrackDTO]> {
         let response = IOWriter<(response: URLResponse, data: Data)>.var()
-        let parsedResponse = IOWriter<[Track]>.var()
+        let parsedResponse = IOWriter<[TrackDTO]>.var()
 
         return binding(
             response <- IOWriter.liftF(URLSession.shared.dataTaskIO(with: URL(string: self.tracksUrl)!)),
             |<-IOWriter.tell([.requestSuccesful(method: "GET", url: self.tracksUrl)]),
-            parsedResponse <- IOWriter.liftF(response.get.data.decode([Track].self)),
+            parsedResponse <- IOWriter.liftF(response.get.data.decode([TrackDTO].self)),
             |<-IOWriter.tell([.successfullyParsed(method: "GET", url: self.tracksUrl)]),
             yield: parsedResponse.get
         )^
     }
 
     var replaceUrl: String { "\(baseUrl)/replace" }
-    public func replace(_ tracks: [Track]) -> IOWriter<Void> {
+    public func replace(_ tracks: [TrackDTO]) -> IOWriter<Void> {
 
         let dto = ReplaceTracksDTO(
             mode: .updateOrCreate,
             replacements: tracks.compactMap(Replacement.init)
         )
 
-        let uploadData = try! JSONEncoder().encode(dto)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let uploadData = try! encoder.encode(dto)
         let uploadDataJson = String(data: uploadData, encoding: .utf8) ?? ""
 
         var request = URLRequest(url: URL(string: replaceUrl)!)
@@ -82,10 +84,10 @@ public class TracksClient: TracksAPI {
 
     private struct Replacement: Codable {
         let mediaUri: String
-        let track: Track
+        let track: TrackDTO
 
-        init?(_ track: Track) {
-            guard let uri = track.rel.first?.uri else { return nil }
+        init?(_ track: TrackDTO) {
+            guard let uri = track.src.first?.uri else { return nil }
             self.mediaUri = uri
             self.track = track
         }

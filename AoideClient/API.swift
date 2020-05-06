@@ -14,7 +14,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
-import AoideModel
+import AoideModelDTO
 import Bow
 import BowEffects
 
@@ -25,6 +25,6 @@ public protocol AoideAPI {
 }
 
 public protocol TracksAPI {
-    func tracks() -> IOWriter<[Track]>
-    func replace(_ tracks: [Track]) -> IOWriter<Void>
+    func tracks() -> IOWriter<[TrackDTO]>
+    func replace(_ tracks: [TrackDTO]) -> IOWriter<Void>
 }
