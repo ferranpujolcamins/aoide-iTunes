@@ -81,6 +81,11 @@ let package = Package(
             path: "MappingTests"
         ),
         .testTarget(
+            name: "DTOTests",
+            dependencies: ["AoideModel", "AoideModelDTO"],
+            path: "DTOTests"
+        ),
+        .testTarget(
             name: "IntegrationTests",
             dependencies: [
                 "AoideITunesLib",

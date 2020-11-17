@@ -22,7 +22,7 @@ public struct TrackDTO: Equatable, Codable {
         rel: Release?,
         alb: Album?,
         tit: [Title],
-        act: [Actor],
+        act: [ActorDTO],
         idx: Indexes,
         mrk: Markers,
         tag: Tags
@@ -47,7 +47,7 @@ public struct TrackDTO: Equatable, Codable {
 
     public let tit: [Title]
 
-    public let act: [Actor]
+    public let act: [ActorDTO]
 
     public let idx: Indexes
 
@@ -63,7 +63,7 @@ extension TrackDTO {
             release: rel,
             album: alb,
             titles: tit,
-            actors: act,
+            actors: act.map { $0.model() },
             indexes: idx,
             markers: mrk,
             tags: tag
@@ -78,7 +78,7 @@ extension Track {
             rel: release,
             alb: album,
             tit: titles,
-            act: actors,
+            act: actors.map { $0.dto() },
             idx: indexes,
             mrk: markers,
             tag: tags

@@ -30,28 +30,28 @@ public struct Actor: Equatable, Codable {
     public let precedence: ActorPrecedence
 }
 
-public enum ActorRole: String, Equatable, Codable {
-    case artist
-    case arranger
-    case composer
-    case conductor
-    case djMixer
-    case engineer
-    case lyricist
-    case mixer
-    case performer
-    case producer
-    case publisher
-    case remixer
-    case writer
+public enum ActorRole: Int, Equatable, Codable {
+    case artist = 0
+    case arranger = 1
+    case composer = 2
+    case conductor = 3
+    case djMixer = 4
+    case engineer = 5
+    case lyricist = 6
+    case mixer = 7
+    case performer = 8
+    case producer = 9
+    case publisher = 10
+    case remixer = 11
+    case writer = 12
 
     public static var `default`: ActorRole { .artist }
 }
 
-public enum ActorPrecedence: String, Equatable, Codable {
-    case summary
-    case primary
-    case secondary
+public enum ActorPrecedence: Int, Equatable, Codable {
+    case summary = 0
+    case primary = 1
+    case secondary = 2
 
     public static var `default`: ActorPrecedence { .summary }
 }
