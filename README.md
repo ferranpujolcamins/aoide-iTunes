@@ -1,3 +1,3 @@
 # aoide-iTunes
 
-A description of this package.
+An [Aoide](https://gitlab.com/uklotzde/aoide-rs) client to retrieve iTunes library metadata (Swift)t
